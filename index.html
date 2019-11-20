@@ -1,38 +1,57 @@
 <!doctype html>
 <html lang="zh-Hans">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>f组件库</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-    }
-    html {
-      --button-height: 32px;
-      --font-size: 14px;
-      --button-bg: white;
-      --button-active-bg: #eee;
-      --border-radius: 4px;
-      --color: #333;
-      --border-color: #999;
-      --border-color-hover: #666;
-    }
-    #app {
-      margin: 20px;
-    }
-    body {
-      font-size: var(--font-size);
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>f组件库</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            --button-height: 32px;
+            --font-size: 14px;
+            --button-bg: white;
+            --button-active-bg: #eee;
+            --border-radius: 4px;
+            --color: #333;
+            --border-color: #999;
+            --border-color-hover: #666;
+        }
+
+        #app {
+            margin: 20px;
+        }
+
+        body {
+            font-size: var(--font-size);
+        }
+
+    </style>
+    <style>
+        .icon {
+            height: 1em;
+            width: 1em;
+        }
+    </style>
 </head>
 <body>
 <div id="app">
-  <f-button></f-button>
+    <f-button icon="settings">
+        按钮
+    </f-button>
+    <f-button>
+        按钮
+    </f-button>
+    <f-button icon="settings" icon-position="right">
+        按钮
+    </f-button>
 </div>
 <script src="./src/app.js"></script>
+<script src="http://at.alicdn.com/t/font_1520932_66q9uy9kfij.js"></script>
 </body>
 </html>
