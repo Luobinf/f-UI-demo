@@ -11,7 +11,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .f-icon {
+  .icon {
     height: 1em;
     width: 1em;
   }

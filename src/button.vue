@@ -3,7 +3,7 @@
   <button class="f-button" :class="{[`icon-${iconPosition}`]:true}">
       <f-icon :name="icon" v-if="icon" class="icon"></f-icon>
       <div class="content">
-      <slot>按钮</slot>
+        <slot>按钮</slot>
       </div>
   </button>
 </template>
@@ -48,7 +48,7 @@ export default {
       outline: none;
     }
     /*用css来控制icon的方向*/
-    > .f-icon{
+    > .icon{
       order: 1;
       margin-right: 0.3em;
     }
@@ -56,7 +56,7 @@ export default {
       order: 2;
     }
     &.icon-right {
-      > .f-icon{
+      > .icon{
         order: 2;
         margin-right: 0;
         margin-left: 0.3em;
