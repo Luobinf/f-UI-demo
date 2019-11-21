@@ -12,7 +12,19 @@
 
 <script type="text/javascript">
 export default {
-  props: ['icon','iconPosition']
+  // props: ['icon','iconPosition']
+    props: {
+        icon: {},
+        iconPosition: {
+            type: String,
+            default: 'left',
+            //prop属性校验器
+            validator: function (value) {
+                //value为用户传给子组件的值，如果值不符合，vue就会发出一个警告
+                return !(value !== 'left' && value !== 'right')
+            }
+        }
+    }
 }
 </script>
 
