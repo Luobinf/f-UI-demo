@@ -1,8 +1,8 @@
 <template>
 <!--  iconPosition是一个变量-->
-  <button class="f-button" :class="{[`icon-${iconPosition}`]:true}">
-      <f-icon :name="icon" v-if="icon" class="icon"></f-icon>
-      <f-icon name="loading" class="icon loading"></f-icon>
+  <button class="f-button" :class="{[`icon-${iconPosition}`]:true}" @click="x">
+      <f-icon :name="icon" v-if="icon && !loading" class="icon"></f-icon>
+      <f-icon name="loading" class="icon loading" v-if="loading"></f-icon>
       <div class="content">
         <slot>按钮</slot>
       </div>
@@ -14,6 +14,10 @@ export default {
   // props: ['icon','iconPosition']
     props: {
         icon: {},
+        loading: {
+          type: Boolean,
+            default: false
+        },
         iconPosition: {
             type: String,
             default: 'left',
@@ -22,6 +26,11 @@ export default {
                 //value为用户传给子组件的值，如果值不符合，vue就会发出一个警告
                 return !(value !== 'left' && value !== 'right')
             }
+        }
+    },
+    methods: {
+        x() {
+            this.$emit('click')
         }
     }
 }

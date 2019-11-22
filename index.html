@@ -38,19 +38,19 @@
 </head>
 <body>
 <div id="app">
-    <f-button icon="settings">
+    <f-button :loading="loading1">
         按钮
     </f-button>
 <!--    icon的位置放在哪里，左边还是右边-->
-    <f-button>
+    <f-button :loading="loading2" icon="settings" @click="loading2 = !loading2">
         按钮
     </f-button>
-    <f-button icon="settings" icon-position="right">
+    <f-button icon="settings" icon-position="right" :loading="loading3" @click="loading3 = !loading3">
         按钮
     </f-button>
     <f-icon name="download" class="icon"></f-icon>
 </div>
 <script src="./src/app.js"></script>
-<script src="http://at.alicdn.com/t/font_1520932_jhq7hchahkf.js"></script>
+<script src="http://at.alicdn.com/t/font_1520932_cxo1lhe243r.js"></script>
 </body>
 </html>
