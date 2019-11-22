@@ -6,13 +6,13 @@
 
 <script type="text/javascript">
 export default {
-  data () {
-    return {
-
+  mounted() {
+    for(let node of  this.$el.children) {
+      let name = node.nodeName.toLowerCase()
+      if (name !== 'button') {
+        console.warn(`f-button-group的子元素应该全是f-button,但是你写的的是${name}`)
+      }
     }
-  },
-  components: {
-
   }
 }
 </script>
