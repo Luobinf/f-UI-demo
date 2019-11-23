@@ -23,7 +23,6 @@ import chai from 'chai'
 const expect = chai.expect
 {
     const Constructor = Vue.extend(Button)
-    console.log(Constructor)
     const vm = new Constructor({
         propsData: {
             icon: 'settings',
@@ -39,7 +38,6 @@ const expect = chai.expect
 }
 {
     const Constructor = Vue.extend(Button)
-    console.log(Constructor)
     const vm = new Constructor({
         propsData: {
             icon: 'settings',
@@ -58,7 +56,6 @@ const expect = chai.expect
     const div = document.createElement('div')
     document.body.appendChild(div)
     const Constructor = Vue.extend(Button)
-    console.log(Constructor)
     const vm = new Constructor({
         propsData: {
             icon: 'settings',
@@ -76,7 +73,6 @@ const expect = chai.expect
     const div = document.createElement('div')
     document.body.appendChild(div)
     const Constructor = Vue.extend(Button)
-    console.log(Constructor)
     const vm = new Constructor({
         propsData: {
             icon: 'settings',

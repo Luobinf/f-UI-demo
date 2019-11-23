@@ -1,6 +1,6 @@
 <template>
 <!--  iconPosition是一个变量-->
-  <button class="f-button" :class="{[`icon-${iconPosition}`]:true}" @click="x">
+  <button class="f-button" :class="{[`icon-${iconPosition}`]:true}" @click="changeState">
       <f-icon :name="icon" v-if="icon && !loading" class="icon"></f-icon>
       <f-icon name="loading" class="icon loading" v-if="loading"></f-icon>
       <div class="content">
@@ -29,7 +29,7 @@ export default {
         }
     },
     methods: {
-        x() {
+        changeState() {
             this.$emit('click')
         }
     }
