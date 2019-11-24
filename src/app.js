@@ -18,10 +18,11 @@ new Vue({
 })
 import spies from 'chai-spies'
 chai.use(spies)
-//单元测试
 import chai from 'chai'
 const expect = chai.expect
+//单元测试
 {
+    //测试是否含有按钮
     const Constructor = Vue.extend(Button)
     const vm = new Constructor({
         propsData: {
@@ -37,6 +38,7 @@ const expect = chai.expect
     vm.$destroy()
 }
 {
+    //
     const Constructor = Vue.extend(Button)
     const vm = new Constructor({
         propsData: {
@@ -87,7 +89,7 @@ const expect = chai.expect
     vm.$destroy()
 }
 {
-    //mock
+    //测试事件
     const Constructor = Vue.extend(Button)
     const vm = new Constructor({
         propsData: {

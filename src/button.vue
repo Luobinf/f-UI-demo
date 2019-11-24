@@ -10,8 +10,12 @@
 </template>
 
 <script type="text/javascript">
+    import Icon from './icon'
 export default {
   // props: ['icon','iconPosition']
+    components: {
+      'f-icon': Icon
+    },
     props: {
         icon: {},
         loading: {
