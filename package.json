@@ -1,6 +1,6 @@
 {
   "name": "fjq-ui-1",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "这是一个基于Vue的UI组件库",
   "main": "dist/index.js",
   "scripts": {
