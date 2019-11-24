@@ -13,7 +13,7 @@ describe('Button', () => {
     //BDD 行为测试驱动
     //这里描述了Button的一系列行为
     it('存在.', () => {
-        expect(Button).to.equal('string') //不是falsy值就可以
+        expect(Button).to.be.ok //不是falsy值就可以
     })
     it('可以设置icon.', () => {
         const Constructor = Vue.extend(Button)
