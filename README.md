@@ -4,25 +4,40 @@
 这是我在学习Vue过程中做的一个UI组件库，欢迎一起交流。
 ## 开始使用
 1. 添加CSS样式
-使用本组件前，请在css中开启border-box
-```
-*，*::before，*::after{ box-sizing: border-box;}
-```
-IE8 及以上浏览器支持此样式
-你还需要设置默认颜色等变量，后续会改为scss变量。
-```
-html {
-            --button-height: 32px;
-            --font-size: 14px;
-            --button-bg: white;
-            --button-active-bg: #eee;
-            --border-radius: 4px;
-            --color: #333;
-            --border-color: #999;
-            --border-color-hover: #666;
-   }
-```
-IE15 及以上浏览器支持此样式。
+	使用本组件前，请在css中开启border-box
+	```
+	*，*::before，*::after{ box-sizing: border-box;}
+	```
+	IE8 及以上浏览器支持此样式
+	你还需要设置默认颜色等变量，后续会改为scss变量。
+	```
+	html {
+	--button-height: 32px;
+	--font-size: 14px;
+	--button-bg: white;
+	--button-active-bg: #eee;
+	--border-radius: 4px;
+	--color: #333;
+	--border-color: #999;
+	--border-color-hover: #666;
+	   }
+	```
+	IE15 及以上浏览器支持此样式。
+2. 安装 fjq-ui-1
+	```
+	npm install --save fjq-ui-1
+	```
+3.引入  fjq-ui-1
+	```
+	import { Button } from "fjq-ui-1";
+	import "fjq-ui-1/dist/index.css";
+	export default {
+	  name: "app",
+	  components: {
+		"f-button": Button,
+	  },
+	}
+	```
 ## 文档
 ## 提问
 你好
