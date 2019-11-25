@@ -1,5 +1,5 @@
 # 这是一个基于Vue的UI组件库
-
+[![Build Status](https://travis-ci.org/Luobinf/f-UI-demo.svg?branch=master)](https://travis-ci.org/Luobinf/f-UI-demo)
 ## 介绍
 ## 开始使用
 1. 安装
