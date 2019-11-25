@@ -5,9 +5,10 @@
 </template>
 
 <script type="text/javascript">
-export default {
-  props: ['name']
-}
+  import './svg'
+  export default {
+    props: ['name']
+  }
 </script>
 
 <style scoped lang="scss">
