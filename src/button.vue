@@ -12,7 +12,7 @@
 <script type="text/javascript">
     import Icon from './icon'
 export default {
-  // props: ['icon','iconPosition']
+    name: 'fjq-button',
     components: {
       'f-icon': Icon
     },

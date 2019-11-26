@@ -1,5 +1,5 @@
 <template>
-  <svg>
+  <svg class="icon">
     <use :xlink:href=`#i-${name}`></use>
   </svg>
 </template>
@@ -7,6 +7,7 @@
 <script type="text/javascript">
   import './svg'
   export default {
+    name: 'fjq-icon',
     props: ['name']
   }
 </script>
