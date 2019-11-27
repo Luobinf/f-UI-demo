@@ -6,7 +6,7 @@ Vue.config.productionTip = false
 Vue.config.devtools = false
 
 
-//Mocha是一个单元测试框架库
+//Mocha是一个单元测试框架库,describe和it是Mocha提供的
 describe('Input', () => {
     //BDD 行为测试驱动
     it('存在.', () => {
@@ -76,9 +76,16 @@ describe('Input', () => {
                 vm.$on(eventName, callback)
                 //触发input的change事件
                 let event = new Event(eventName)
+                Object.defineProperty(event,'target',{
+                    value: {
+                        value: `welcome`
+                    },
+                    enumerable: true
+                })
+                //触发事件
                 let inputElement = vm.$el.querySelector('input')
                 inputElement.dispatchEvent(event)
-                expect(callback).to.have.been.calledWith(event)
+                expect(callback).to.have.been.calledWith('welcome')
             })
         })
 

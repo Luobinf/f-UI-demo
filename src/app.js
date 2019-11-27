@@ -15,11 +15,12 @@ new Vue({
     data: {
         loading1: false,
         loading2: true,
-        loading3: false
+        loading3: false,
+        message: 'well done'
     },
     methods: {
-        inputChange(event) {
-            console.log(event.target.value)
+        inputChange(value) {
+            console.log(value)
         }
     }
 })
