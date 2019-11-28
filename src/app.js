@@ -4,12 +4,14 @@ import Button from './button'
 import Icon from './icon'
 import ButtonGroup from './button-group'
 import Input from './input'
+import Ginput from './in'
 
 //全局的f-button组件
 Vue.component(`f-button`,Button)
 Vue.component(`f-icon`,Icon)
 Vue.component(`f-button-group`,ButtonGroup)
 Vue.component(`f-input`,Input)
+Vue.component(`g-input`,Ginput)
 new Vue({
     el: `#app`,
     data: {
@@ -20,6 +22,15 @@ new Vue({
     },
     methods: {
         inputChange(value) {
+            console.log(value)
+        },
+        inputFocus(value) {
+            console.log(value)
+        },
+        inputBlur(value) {
+            console.log(value)
+        },
+        input(value) {
             console.log(value)
         }
     }

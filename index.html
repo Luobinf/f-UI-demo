@@ -63,6 +63,12 @@
     <div class="box">
         <f-input value="王" error="姓名不能少于两个字"></f-input>
     </div>
+    <div class="box">
+        <g-input value="就爱" @change="inputChange" @focus="inputFocus" @blur="inputBlur" @input="input"></g-input>
+        <g-input value="就爱" :disabled="true"></g-input>
+        <g-input value="就爱" :readonly="true"></g-input>
+        <g-input value="骆" error="姓名不能少于两个字"></g-input>
+    </div>
 </div>
 <script src="./src/app.js"></script>
 </body>

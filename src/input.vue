@@ -4,8 +4,8 @@
       @input="$emit('input',$event.target.value)" @focus="$emit('focus',$event.target.value)" @blur="$emit('blur',$event.target.value)"
     >
     <template v-if="error">
-      <icon name="error" v-if="error" class="icon-error"></icon>
-      <span v-if="error" class="errorMessage">{{error}}</span>
+      <icon name="error" class="icon-error"></icon>
+      <span class="errorMessage">{{error}}</span>
     </template>
   </div>
 </template>
