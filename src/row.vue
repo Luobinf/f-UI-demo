@@ -1,6 +1,6 @@
 <template>
-  <div class="page">
-
+  <div class="row">
+    <slot></slot>
   </div>
 </template>
 
@@ -17,5 +17,8 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+  .row{
+    display: flex;
+  }
 </style>

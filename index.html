@@ -33,9 +33,24 @@
 
     </style>
     <style>
-    .box{
-        margin: 20px;
-    }
+        .box{
+            margin: 20px;
+        }
+        .row{
+            display: flex;
+        }
+        .col{
+            width: 50%;
+            height: 100px;
+            background-color: blue;
+            border: 1px solid red;
+        }
+        .col[data-span="2"]{
+             width: 8.333333%;
+         }
+        .col[data-span="24"]{
+            width: 91.666667%;
+        }
     </style>
 </head>
 <body>
@@ -54,6 +69,19 @@
 <!--        <f-button icon="arrow-left">上一页</f-button>-->
 <!--        <f-button icon="arrow-right" icon-position="right">下一页</f-button>-->
 <!--    </f-button-group>-->
+    <f-row>
+        <f-col></f-col>
+        <f-col></f-col>
+    </f-row>
+    <f-row>
+        <f-col span="col-12"></f-col>
+        <f-col span="col-12"></f-col>
+    </f-row>
+    <f-row>
+        <f-col span="1"></f-col>
+        <f-col span="23"></f-col>
+    </f-row>
+    <hr>
     <div class="box">
         <f-input v-model="message"></f-input>
         <f-input value="张三" @change="inputChange"></f-input>
