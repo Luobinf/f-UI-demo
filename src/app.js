@@ -18,20 +18,21 @@ new Vue({
         loading1: false,
         loading2: true,
         loading3: false,
-        message: 'well done'
+        message: 'well done',
+        value: '你好'
     },
     methods: {
         inputChange(value) {
-            console.log(value)
+
         },
         inputFocus(value) {
-            console.log(value)
+
         },
         inputBlur(value) {
-            console.log(value)
+
         },
         input(value) {
-            console.log(value)
+            // this.value = value
         }
     }
 })

@@ -55,7 +55,7 @@
 <!--        <f-button icon="arrow-right" icon-position="right">下一页</f-button>-->
 <!--    </f-button-group>-->
     <div class="box">
-        <f-input value="哈呼" v-model="message"></f-input>
+        <f-input v-model="message"></f-input>
         <f-input value="张三" @change="inputChange"></f-input>
         <f-input value="李四" :disabled="true"></f-input>
         <f-input value="王五" :readonly="true"></f-input>
@@ -64,10 +64,11 @@
         <f-input value="王" error="姓名不能少于两个字"></f-input>
     </div>
     <div class="box">
-        <g-input value="就爱" @change="inputChange" @focus="inputFocus" @blur="inputBlur" @input="input"></g-input>
+        <g-input @change="inputChange" @focus="inputFocus" @blur="inputBlur" @input="input" v-model="value"></g-input>
         <g-input value="就爱" :disabled="true"></g-input>
         <g-input value="就爱" :readonly="true"></g-input>
         <g-input value="骆" error="姓名不能少于两个字"></g-input>
+        {{value}}
     </div>
 </div>
 <script src="./src/app.js"></script>
