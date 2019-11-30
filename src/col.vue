@@ -1,7 +1,5 @@
 <template>
-  <div class="col" :class="colClass"
-    :style="colStyle"
-  >
+  <div class="col" :class="colClass" :style="colStyle">
       <slot></slot>
   </div>
 </template>
@@ -44,14 +42,14 @@ export default {
     $class-prefix: col-;
     @for $n from 1 through 24{
       /* .col.col-1 .col.col-2 */
-      &.#{$class}#{$n} {
+      &.#{$class-prefix}#{$n} {
         width: ($n / 24) * 100%;
       }
     }
     $class-prefix: offset-;
     @for $n from 1 through 24{
       /* .col.col-1 .col.col-2 */
-      &.#{$class}#{$n} {
+      &.#{$class-prefix}#{$n} {
         margin-left: ($n / 24) * 100%;
       }
     }
