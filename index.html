@@ -34,14 +34,47 @@
 
     </style>
     <style>
-        .box{
-            margin: 20px;
+        .navBar {
+            background: skyblue;
+            min-height: 50px;
         }
+        .navBar .top{
+            border: 1px solid red;
+            height: 100px;
+        }
+        .navBar .top .title{
+            height: 60px;
+            border: 1px solid black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
     </style>
 </head>
 <body>
 <div id="app">
-
+    <f-row class="navBar">
+        <f-col class="top" span="9">
+            <f-row class="title">
+                <f-col class="child">1</f-col>
+                <f-col class="child">2</f-col>
+                <f-col class="child">3</f-col>
+                <f-col class="child">4</f-col>
+            </f-row>
+        </f-col>
+        <f-col class="top" span="15">
+            <f-row align="right">
+                <f-col>1</f-col>
+                <f-col>2</f-col>
+                <f-col>3</f-col>
+                <f-col>4</f-col>
+                <f-col>5</f-col>
+                <f-col>6</f-col>
+                <f-col>7</f-col>
+            </f-row>
+        </f-col>
+    </f-row>
 <!--    <f-button :loading="loading1">-->
 <!--        按钮-->
 <!--    </f-button>-->
