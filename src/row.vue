@@ -1,5 +1,5 @@
 <template>
-  <div class="row" :style="{marginLeft: `${-gutter/2}px`,marginRight: `${-gutter/2}px`}">
+  <div class="row" :style="rowStyle">
     <slot></slot>
   </div>
 </template>
@@ -12,9 +12,17 @@ export default {
       type: [Number,String]
     }
   },
+  computed: {
+    rowStyle() {
+      let {gutter} = this
+      return {
+        marginLeft: `${-gutter/2}px`,
+        marginRight: `${-gutter/2}px`
+      }
+    }
+  },
   mounted() {
-    // console.log(this.$children)
-    // 此时子组件已经挂载到了父组件上，并且父组件挂载到了页面中，此时可以获取到css的1样式了
+    // 此时子组件已经挂载到了父组件上，并且父组件挂载到了页面中，此时可以获取到css的样式了
     this.$children.forEach((vm) => {
       vm.gutter = this.gutter
     })
