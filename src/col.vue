@@ -56,10 +56,10 @@ export default {
       colClass(){
           let {span,offset,ipad,narrowPc,pc,widePc} = this
           return [span && `col-${span}`,offset && `offset-${offset}`,
-              ...(ipad && [`col-ipad-${ipad.span}`]),
-              ...(narrowPc && [`col-narrow-pc-${narrowPc.span}`]),
-              ...(pc && [`col-pc-${pc.span}`]),
-              ...(widePc && [`col-wide-pc-${widePc.span}`])
+              ...(ipad ? [`col-ipad-${ipad.span}`] : []),
+              ...(narrowPc ? [`col-narrow-pc-${narrowPc.span}`] : []),
+              ...(pc ? [`col-pc-${pc.span}`] : []),
+              ...(widePc ? [`col-wide-pc-${widePc.span}`] : [])
           ]
       }
   }
@@ -80,8 +80,8 @@ export default {
         margin-left: ($n / 24) * 100%;
       }
     }
-      /*该样式只在页面可视区域宽度小于等于576px才有效*/
-      @media (min-width: 577px) and (max-width: 768px) {
+      /*该样式只在页面可视区域宽度大于等于577px才有效*/
+      @media (min-width: 577px) {
           $class-prefix: col-ipad-;
           @for $n from 1 through 24{
               &.#{$class-prefix}#{$n} {
@@ -95,7 +95,7 @@ export default {
               }
           }
       }
-      @media (min-width: 769px) and (max-width: 992px) {
+      @media (min-width: 769px){
           $class-prefix: col-narrow-pc-;
           @for $n from 1 through 24{
               &.#{$class-prefix}#{$n} {
@@ -109,7 +109,7 @@ export default {
               }
           }
       }
-      @media (min-width: 993px) and (max-width: 1200px) {
+      @media (min-width: 993px){
           $class-prefix: col-pc-;
           @for $n from 1 through 24{
               &.#{$class-prefix}#{$n} {

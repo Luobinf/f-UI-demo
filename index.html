@@ -35,12 +35,13 @@
     </style>
     <style>
         .navBar {
-            background: skyblue;
+            /*background: skyblue;*/
             min-height: 50px;
         }
         .navBar .top{
             border: 1px solid red;
             height: 100px;
+            background-color: skyblue;
         }
         .navBar .top .title{
             height: 60px;
@@ -55,12 +56,9 @@
 <body>
 <div id="app">
     <f-row class="navBar">
-        <f-col class="top" span="24" :ipad="{span:8}" :narrow-pc="{span:4}"
-            :pc="{span:2}" :wide-pc="{span:1}"
-        ></f-col>
-        <f-col class="top" span="24" :ipad="{span:16}" :narrow-pc="{span:20}"
-               :pc="{span:22}" :wide-pc="{span:23}"
-        ></f-col>
+        <f-col class="top" span="24" :narrow-pc="{span: 8}"></f-col>
+        <f-col class="top" span="24" :narrow-pc="{span: 8}"></f-col>
+        <f-col class="top" span="24" :narrow-pc="{span: 8}"></f-col>
     </f-row>
 <!--    <f-button :loading="loading1">-->
 <!--        按钮-->
