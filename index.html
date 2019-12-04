@@ -55,25 +55,12 @@
 <body>
 <div id="app">
     <f-row class="navBar">
-        <f-col class="top" span="9">
-            <f-row class="title">
-                <f-col class="child">1</f-col>
-                <f-col class="child">2</f-col>
-                <f-col class="child">3</f-col>
-                <f-col class="child">4</f-col>
-            </f-row>
-        </f-col>
-        <f-col class="top" span="15">
-            <f-row align="right">
-                <f-col>1</f-col>
-                <f-col>2</f-col>
-                <f-col>3</f-col>
-                <f-col>4</f-col>
-                <f-col>5</f-col>
-                <f-col>6</f-col>
-                <f-col>7</f-col>
-            </f-row>
-        </f-col>
+        <f-col class="top" span="24" :ipad="{span:8}" :narrow-pc="{span:4}"
+            :pc="{span:2}" :wide-pc="{span:1}"
+        ></f-col>
+        <f-col class="top" span="24" :ipad="{span:16}" :narrow-pc="{span:20}"
+               :pc="{span:22}" :wide-pc="{span:23}"
+        ></f-col>
     </f-row>
 <!--    <f-button :loading="loading1">-->
 <!--        按钮-->
