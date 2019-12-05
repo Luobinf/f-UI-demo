@@ -1,14 +1,22 @@
 <template>
-  <div class="f-row" :class="[justify && `justify-content-${justify}`,
-    align && `align-items-${align}`,
-    ]" :style="{margin: `0 ${-gutter/2}px`}"
-  >
+  <div class="f-row" :style="RowStyle" :class="RowClass">
     <slot></slot>
   </div>
 </template>
 
 <script type="text/javascript">
 export default {
+  computed: {
+    RowStyle() {
+      return {margin: `0 ${-this.gutter/2}px`}
+    },
+    RowClass() {
+      let {justify,align} = this
+      return [justify && `justify-content-${justify}`,
+              align && `align-items-${align}`,
+            ]
+    }
+  },
   props: {
     justify: {
       type: String,
@@ -25,13 +33,11 @@ export default {
       }
     },
     gutter: {
-      type: [String,Number],
-      validator(value){
-        return typeof value === 'string' || typeof value === 'number'
-      }
+      type: [String,Number]
     }
   },
   mounted() {
+    // 父组件挂载到页面中，此时可以获取到子组件
     this.$children.forEach( (component) => {
       component.gutter = this.gutter
     })

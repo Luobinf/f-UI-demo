@@ -1,7 +1,5 @@
 <template>
-  <div class="f-col" :class="[span && `col-span-${span}`,offset && `col-offset-${offset}`,order && `col-order-${order}`]"
-    :style="{padding: `0 ${gutter/2}px`}"
-  >
+  <div class="f-col" :style="ColStyle" :class="ColClass">
     <slot></slot>
   </div>
 </template>
@@ -13,37 +11,28 @@ export default {
       gutter: 0
     }
   },
+  computed: {
+    ColStyle() {
+      return {padding: `0 ${this.gutter/2}px`}
+    },
+    ColClass() {
+      let {span,offset,order} = this
+      return [span && `col-span-${span}`,
+              offset && `col-offset-${offset}`,
+              order && `col-order-${order}`
+            ]
+    }
+  },
   props: {
     span: {
-      type: [String,Number],
-      validator(value) {
-        if (typeof value === 'number' || typeof value === 'string') {
-          return true
-        } else {
-          return false
-        }
-      }
+      type: [String,Number]
     },
     offset: {
-      type: [String,Number],
-      validator(value) {
-        if (typeof value === 'number' || typeof value === 'string') {
-          return true
-        } else {
-          return false
-        }
-      }
+      type: [String,Number]
     },
     order: {
-      type: [String,Number],
-      validator(value) {
-        if (typeof value === 'number' || typeof value === 'string') {
-          return true
-        } else {
-          return false
-        }
-      }
-    },
+      type: [String,Number]
+    }
   }
 }
 </script>
