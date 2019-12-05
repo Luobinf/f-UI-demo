@@ -5,17 +5,16 @@ import Icon from './icon'
 import ButtonGroup from './button-group'
 import Input from './input'
 import Ginput from './in'
-import Row from './row'
-import Col from './col'
+import gRow from './frow'
+import gCol from './fcol'
 
-//全局的f-button组件
 Vue.component(`f-button`,Button)
 Vue.component(`f-icon`,Icon)
 Vue.component(`f-button-group`,ButtonGroup)
 Vue.component(`f-input`,Input)
 Vue.component(`g-input`,Ginput)
-Vue.component(`f-row`,Row)
-Vue.component(`f-col`,Col)
+Vue.component(`g-row`,gRow)
+Vue.component(`g-col`,gCol)
 new Vue({
     el: `#app`,
     data: {

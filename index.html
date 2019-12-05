@@ -2,8 +2,7 @@
 <html lang="zh-Hans">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>f组件库</title>
     <style>
@@ -50,16 +49,31 @@
             align-items: center;
             justify-content: center;
         }
-
+        .g-col{
+            background-color: skyblue;
+            height: 100px;
+        }
     </style>
 </head>
 <body>
 <div id="app">
-    <f-row class="navBar">
-        <f-col class="top" span="24" :narrow-pc="{span: 8}"></f-col>
-        <f-col class="top" span="24" :narrow-pc="{span: 8}"></f-col>
-        <f-col class="top" span="24" :narrow-pc="{span: 8}"></f-col>
-    </f-row>
+    <g-row>
+        <g-col span="8" order="2" offset="2">order-2</g-col>
+        <g-col span="14" order="1">order-1</g-col>
+    </g-row>
+    <g-row justify="center" align="center">
+        <g-col span="6"></g-col>
+        <g-col span="10"></g-col>
+    </g-row>
+    <g-row gutter="20">
+        <g-col span="12"></g-col>
+        <g-col span="12"></g-col>
+    </g-row>
+<!--    <f-row class="navBar">-->
+<!--        <f-col class="top" span="24" :narrow-pc="{span: 8}"></f-col>-->
+<!--        <f-col class="top" span="24" :narrow-pc="{span: 8}"></f-col>-->
+<!--        <f-col class="top" span="24" :narrow-pc="{span: 8}"></f-col>-->
+<!--    </f-row>-->
 <!--    <f-button :loading="loading1">-->
 <!--        按钮-->
 <!--    </f-button>-->
@@ -76,8 +90,8 @@
 <!--    </f-button-group>-->
 <!--    <div style="border: 1px solid black;">-->
 <!--        <f-row gutter="20">-->
-<!--            <f-col>1</f-col>-->
-<!--            <f-col>2</f-col>-->
+<!--            <f-col class="g-col" span="12">1</f-col>-->
+<!--            <f-col class="g-col" span="12">2</f-col>-->
 <!--        </f-row>-->
 <!--        <f-row>-->
 <!--            <f-col span="col-12">3</f-col>-->
