@@ -47,7 +47,6 @@ export default {
 
 <style scoped lang="scss">
   .f-row{
-    width: 100%;
     display: flex;
     flex-wrap: wrap;
     &.justify-content-start{
