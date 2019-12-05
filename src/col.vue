@@ -1,5 +1,5 @@
 <template>
-  <div class="g-col" :class="[span && `col-span-${span}`,offset && `col-offset-${offset}`,order && `col-order-${order}`]"
+  <div class="f-col" :class="[span && `col-span-${span}`,offset && `col-offset-${offset}`,order && `col-order-${order}`]"
     :style="{padding: `0 ${gutter/2}px`}"
   >
     <slot></slot>
@@ -49,7 +49,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .g-col{
+  .f-col{
     $class-prefix: col-span-;
     @for $n from 1 through 24{
       &.#{$class-prefix}#{$n} {

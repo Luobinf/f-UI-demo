@@ -5,16 +5,16 @@ import Icon from './icon'
 import ButtonGroup from './button-group'
 import Input from './input'
 import Ginput from './in'
-import gRow from './frow'
-import gCol from './fcol'
+import fRow from './row'
+import fCol from './col'
 
 Vue.component(`f-button`,Button)
 Vue.component(`f-icon`,Icon)
 Vue.component(`f-button-group`,ButtonGroup)
 Vue.component(`f-input`,Input)
 Vue.component(`g-input`,Ginput)
-Vue.component(`g-row`,gRow)
-Vue.component(`g-col`,gCol)
+Vue.component(`f-row`,fRow)
+Vue.component(`f-col`,fCol)
 new Vue({
     el: `#app`,
     data: {

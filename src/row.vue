@@ -1,5 +1,5 @@
 <template>
-  <div class="g-row" :class="[justify && `justify-content-${justify}`,
+  <div class="f-row" :class="[justify && `justify-content-${justify}`,
     align && `align-items-${align}`,
     ]" :style="{margin: `0 ${-gutter/2}px`}"
   >
@@ -40,7 +40,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .g-row{
+  .f-row{
     width: 100%;
     display: flex;
     flex-wrap: wrap;
