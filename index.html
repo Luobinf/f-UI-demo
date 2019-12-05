@@ -33,42 +33,37 @@
 
     </style>
     <style>
-        .navBar {
-            /*background: skyblue;*/
-            min-height: 50px;
-        }
-        .navBar .top{
-            border: 1px solid red;
-            height: 100px;
-            background-color: skyblue;
-        }
-        .navBar .top .title{
-            height: 60px;
-            border: 1px solid black;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
         .f-col{
             background-color: skyblue;
             height: 100px;
+        }
+        .f-col:last-child{
+            background-color: yellow;
         }
     </style>
 </head>
 <body>
 <div id="app">
     <f-row>
-        <f-col span="8" order="2" offset="2">order-2</f-col>
-        <f-col span="14" order="1">order-1</f-col>
+        <f-col span="24" :ipad="{span:2}" :pc="{span: 20}"></f-col>
+        <f-col span="24" :ipad="{span:22}" :pc="{span: 4}"></f-col>
     </f-row>
-    <f-row justify="space-around" align="center">
-        <f-col span="6"></f-col>
-        <f-col span="10"></f-col>
+    <f-row>
+        <f-col span="2"></f-col>
+        <f-col span="22"></f-col>
     </f-row>
-    <f-row gutter="20">
-        <f-col span="12"></f-col>
-        <f-col span="12"></f-col>
-    </f-row>
+<!--    <f-row>-->
+<!--        <f-col span="8" order="2" offset="2">order-2</f-col>-->
+<!--        <f-col span="14" order="1">order-1</f-col>-->
+<!--    </f-row>-->
+<!--    <f-row justify="space-around" align="center">-->
+<!--        <f-col span="6"></f-col>-->
+<!--        <f-col span="10"></f-col>-->
+<!--    </f-row>-->
+<!--    <f-row gutter="20">-->
+<!--        <f-col span="12"></f-col>-->
+<!--        <f-col span="12"></f-col>-->
+<!--    </f-row>-->
 <!--    <f-row class="navBar">-->
 <!--        <f-col class="top" span="24" :narrow-pc="{span: 8}"></f-col>-->
 <!--        <f-col class="top" span="24" :narrow-pc="{span: 8}"></f-col>-->
