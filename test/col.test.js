@@ -7,7 +7,7 @@ describe('Col',() => {
     it('存在', () => {
         expect(Col).to.be.exist
     })
-    it('接收span属性',() => {
+    it('接收 span 属性',() => {
         let oDiv = document.createElement('div')
         document.body.append(oDiv)
         let Constructor = Vue.extend(Col)
@@ -16,8 +16,35 @@ describe('Col',() => {
                 span: 12
             }
         }).$mount(oDiv)
-        console.log(vm.$el)
-        expect(vm.$el.width).to.equal('50%')
+        expect(vm.$el.classList.contains('col-span-12')).to.equal(true)
+        oDiv.remove()
+        vm.$destroy()
+    })
+    it('接收 order 属性',() => {
+        let oDiv = document.createElement('div')
+        document.body.append(oDiv)
+        let Constructor = Vue.extend(Col)
+        let vm = new Constructor({
+            propsData: {
+                order: 1
+            }
+        }).$mount(oDiv)
+        expect(vm.$el.classList.contains('col-order-1')).to.equal(true)
+        oDiv.remove()
+        vm.$destroy()
+    })
+    it('接收 offset 属性',() => {
+        let oDiv = document.createElement('div')
+        document.body.append(oDiv)
+        let Constructor = Vue.extend(Col)
+        let vm = new Constructor({
+            propsData: {
+                offset: 1
+            }
+        }).$mount(oDiv)
+        expect(vm.$el.classList.contains('col-offset-1')).to.equal(true)
+        oDiv.remove()
+        vm.$destroy()
     })
 })
 
