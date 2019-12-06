@@ -3,6 +3,9 @@ import Vue from 'vue'
 import Row from '../src/row'
 import Col from '../src/col'
 
+Vue.config.productionTip = false
+Vue.config.devtools = false
+
 describe('Row',() => {
     it('存在',() => {
         expect(Row).to.exist
@@ -17,6 +20,7 @@ describe('Row',() => {
             }
         }).$mount(oDiv)
         expect(getComputedStyle(vm.$el).justifyContent).to.equal('center')
+        oDiv.remove()
         vm.$destroy()
     })
     it('接收align属性', function () {
@@ -29,6 +33,7 @@ describe('Row',() => {
             }
         }).$mount(oDiv)
         expect(getComputedStyle(vm.$el).alignItems).to.equal('center')
+        oDiv.remove()
         vm.$destroy()
     })
     it('接收gutter属性', function (done) {
@@ -53,6 +58,8 @@ describe('Row',() => {
             expect(getComputedStyle(colS[0]).paddingLeft).to.equal('10px')
             expect(getComputedStyle(colS[1]).paddingRight).to.equal('10px')
             done()
+            vm.$el.remove()
+            vm.$destroy()
         },1000)
     })
 })
