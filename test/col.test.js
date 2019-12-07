@@ -46,6 +46,44 @@ describe('Col',() => {
         oDiv.remove()
         vm.$destroy()
     })
+    it('接收 ipad 属性',() => {
+        let oDiv = document.createElement('div')
+        document.body.append(oDiv)
+        let Constructor = Vue.extend(Col)
+        let vm = new Constructor({
+            propsData: {
+                ipad: {
+                    span: 10,
+                    offset: 2,
+                    order: 3
+                }
+            }
+        }).$mount(oDiv)
+        expect(vm.$el.classList.contains('col-ipad-span-10')).to.equal(true)
+        expect(vm.$el.classList.contains('col-ipad-offset-2')).to.equal(true)
+        expect(vm.$el.classList.contains('col-ipad-order-3')).to.equal(true)
+        oDiv.remove()
+        vm.$destroy()
+    })
+    it('接收 pc 属性',() => {
+        let oDiv = document.createElement('div')
+        document.body.append(oDiv)
+        let Constructor = Vue.extend(Col)
+        let vm = new Constructor({
+            propsData: {
+                pc: {
+                    span: 10,
+                    offset: 2,
+                    order: 3
+                }
+            }
+        }).$mount(oDiv)
+        expect(vm.$el.classList.contains('col-pc-span-10')).to.equal(true)
+        expect(vm.$el.classList.contains('col-pc-offset-2')).to.equal(true)
+        expect(vm.$el.classList.contains('col-pc-order-3')).to.equal(true)
+        oDiv.remove()
+        vm.$destroy()
+    })
 })
 
 
