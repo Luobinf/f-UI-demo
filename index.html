@@ -27,18 +27,32 @@
         }
         .demo{
             min-height: 100px;
-            border: 1px solid red;
+        }
+        .side{
+            background: skyblue;
+            width: 200px;
+        }
+        .header{
+            height: 100px;
+            background-color: #999999;
+        }
+        .content{
+            background-color: white;
+        }
+        .footer{
+            height: 50px;
+            background-color: #cccccc;
         }
     </style>
 </head>
 <body>
 <div id="app">
     <f-layout style="height: 100vh;">
-        <f-side class="demo">side</f-side>
+        <f-side class="demo side">side</f-side>
         <f-layout>
-            <f-header class="demo">header</f-header>
-            <f-content class="demo">content</f-content>
-            <f-footer class="demo">footer</f-footer>
+            <f-header class="demo header">header</f-header>
+            <f-content class="demo content">content</f-content>
+            <f-footer class="demo footer">footer</f-footer>
         </f-layout>
     </f-layout>
 <!--    <f-row>-->
