@@ -1,21 +1,38 @@
 <template>
-  <div class="page">
-
+  <div class="layout" :class="layoutClass">
+    <slot></slot>
   </div>
 </template>
 
 <script type="text/javascript">
 export default {
+  name: `fLayout`,
   data () {
     return {
-
+      layoutClass:{
+        hasSider: false
+    }
     }
   },
-  components: {
-
+  mounted(){
+    this.$children.forEach((vm) => {
+      if(vm.$options.name === 'fSide'){
+        this.layoutClass.hasSider = true
+      }
+    })
   }
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+  .layout{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    flex-grow: 1;
+
+    &.hasSider{
+      flex-direction: row;
+    }
+  }
 </style>

@@ -7,6 +7,11 @@ import Input from './input'
 import Ginput from './in'
 import fRow from './row'
 import fCol from './col'
+import fLayout from './layout'
+import fHeader from './header'
+import fContent from './content'
+import fSide from './side'
+import fFooter from './footer'
 
 Vue.component(`f-button`,Button)
 Vue.component(`f-icon`,Icon)
@@ -15,6 +20,11 @@ Vue.component(`f-input`,Input)
 Vue.component(`g-input`,Ginput)
 Vue.component(`f-row`,fRow)
 Vue.component(`f-col`,fCol)
+Vue.component(`f-layout`,fLayout)
+Vue.component(`f-header`,fHeader)
+Vue.component(`f-content`,fContent)
+Vue.component(`f-side`,fSide)
+Vue.component(`f-footer`,fFooter)
 new Vue({
     el: `#app`,
     data: {

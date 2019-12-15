@@ -22,36 +22,33 @@
             --border-color: #999;
             --border-color-hover: #666;
         }
-
-        #app {
-            margin: 20px;
-        }
-
         body {
             font-size: var(--font-size);
         }
-
-    </style>
-    <style>
-        .f-col{
-            background-color: skyblue;
-            height: 100px;
-        }
-        .f-col:last-child{
-            background-color: yellow;
+        .demo{
+            min-height: 100px;
+            border: 1px solid red;
         }
     </style>
 </head>
 <body>
 <div id="app">
-    <f-row>
-        <f-col span="24" :ipad="{span:2}" :pc="{span: 20}"></f-col>
-        <f-col span="24" :ipad="{span:22}" :pc="{span: 4}"></f-col>
-    </f-row>
-    <f-row>
-        <f-col span="2"></f-col>
-        <f-col span="22"></f-col>
-    </f-row>
+    <f-layout style="height: 100vh;">
+        <f-side class="demo">side</f-side>
+        <f-layout>
+            <f-header class="demo">header</f-header>
+            <f-content class="demo">content</f-content>
+            <f-footer class="demo">footer</f-footer>
+        </f-layout>
+    </f-layout>
+<!--    <f-row>-->
+<!--        <f-col span="24" :ipad="{span:2}" :pc="{span: 20}"></f-col>-->
+<!--        <f-col span="24" :ipad="{span:22}" :pc="{span: 4}"></f-col>-->
+<!--    </f-row>-->
+<!--    <f-row>-->
+<!--        <f-col span="2"></f-col>-->
+<!--        <f-col span="22"></f-col>-->
+<!--    </f-row>-->
 <!--    <f-row>-->
 <!--        <f-col span="8" order="2" offset="2">order-2</f-col>-->
 <!--        <f-col span="14" order="1">order-1</f-col>-->

@@ -1,21 +1,18 @@
 <template>
-  <div class="page">
-
+  <div class="header">
+    <slot></slot>
   </div>
 </template>
 
 <script type="text/javascript">
-export default {
-  data () {
-    return {
-
-    }
-  },
-  components: {
-
+  export default {
+    name: `fHeader`
   }
-}
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+  .layout{
+
+  }
 </style>
+
