@@ -12,6 +12,8 @@ import fHeader from './header'
 import fContent from './content'
 import fSide from './side'
 import fFooter from './footer'
+import fToast from './toast'
+import Plugin from './plugin'
 
 Vue.component(`f-button`,Button)
 Vue.component(`f-icon`,Icon)
@@ -25,6 +27,10 @@ Vue.component(`f-header`,fHeader)
 Vue.component(`f-content`,fContent)
 Vue.component(`f-side`,fSide)
 Vue.component(`f-footer`,fFooter)
+Vue.component(`f-toast`,fToast)
+
+Vue.use(Plugin)
+
 new Vue({
     el: `#app`,
     data: {
@@ -35,17 +41,8 @@ new Vue({
         value: '你好'
     },
     methods: {
-        inputChange(value) {
-
-        },
-        inputFocus(value) {
-
-        },
-        inputBlur(value) {
-
-        },
-        input(value) {
-            // this.value = value
+        showToast(){
+            this.$toast(`我是消息啊`)
         }
     }
 })
