@@ -7,8 +7,9 @@ export default {
                 propsData: {
                     closeButton: {
                         text: toastProps.closeButton.text,
-                        callback: toastProps.closeButton.callback
-                    }
+                        callback: toastProps.closeButton.callback,
+                    },
+                    position: toastProps.position
                 }
             })
             toast.$slots.default = [message]
