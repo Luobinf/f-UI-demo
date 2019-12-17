@@ -40,10 +40,16 @@ new Vue({
         message: 'well done',
         value: '你好'
     },
-    methods: {
-        showToast(){
-            this.$toast(`我是消息啊`)
-        }
+    created() {
+        this.$toast(`我被关闭啊`,{
+           closeButton: {
+               text: `关闭`,
+               callback(toast){
+                   toast.hi()
+                   console.log(`我被关闭了`)
+               }
+           }
+        })
     }
 })
 // import spies from 'chai-spies'

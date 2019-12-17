@@ -1,25 +1,89 @@
 <template>
-  <div class="toast">
-    <slot></slot>
+  <div class="toast" ref="toast">
+    <div class="message">
+      <slot v-if="!enableHtml"></slot>
+      <div v-else v-html="$slots.default[0]"></div>
+    </div>
+    <div class="line" v-if="closeButton" ref="line"></div>
+    <span v-if="closeButton" class="close" @click="onClickClose">
+      {{closeButton.text}}
+    </span>
   </div>
 </template>
 
 <script type="text/javascript">
   export default {
-    name: `fToast`
+    name: `fToast`,
+    props: {
+      autoClose: {
+        type: Boolean,
+        default: true
+      },
+      autoCloseDelay:{
+        type: Number,
+        default: 30
+      },
+      closeButton: {
+        type: Object,
+        default: () => {
+          return {
+            text: `关闭`,
+            callback: undefined
+          }
+        }
+      },
+      enableHtml: {
+        type: Boolean,
+        default: false
+      }
+    },
+    mounted() {
+      this.updateStyles()
+      this.runAutoClose()
+    },
+    methods: {
+      updateStyles(){
+        this.$nextTick(() => {
+          // this.$refs.line.style.height = this.$refs.toast.getBoundingClientRect().height + 'px'
+          // this.$refs.line.style.height = this.$refs.toast.style.height 不生效
+          this.$refs.line.style.height = this.$refs.toast.getBoundingClientRect().height + 'px'
+        })
+      },
+      runAutoClose(){
+        if(this.autoClose){
+          setTimeout(() => {
+            this.close()
+          },1000*this.autoCloseDelay)
+        }
+      },
+      close(){
+        this.$el.remove()
+        this.$destroy()
+      },
+      onClickClose(){
+        this.close()
+        if(this.closeButton && typeof this.closeButton.callback === 'function'){
+          this.closeButton.callback(this)  //this为toast实例
+        }
+      },
+      hi(){
+        console.log(`hi`)
+      }
+    }
   }
 </script>
 
 <style scoped lang="scss">
   $font-size: 14px;
-  $toast-height: 40px;
+  $toast-min-height: 40px;
   $toast-bg:rgba(0,0,0,0.75);
+  $border-radius: 4px;
   .toast{
     position: fixed;
     top: 0;
     left: 50%;
     transform: translate(-50%,0);
-    height: $toast-height;
+    min-height: $toast-min-height;
     font-size: $font-size;
     display: flex;
     align-items: center;
@@ -27,6 +91,19 @@
     background-color: $toast-bg;
     color: white;
     padding: 0 16px;
+    border-radius: $border-radius;
+  }
+  .close{
+    padding-left: 16px;
+    flex-shrink: 0;
+  }
+  .line{
+    border-left: 1px solid #666;
+    height: 100%;
+    margin-left: 16px;
+  }
+  .message{
+    padding: 4px 0;
   }
 </style>
 
