@@ -71,6 +71,7 @@
       },
       close(){
         this.$el.remove()
+        this.$emit(`close`)
         this.$destroy()
       },
       onClickClose(){
@@ -91,7 +92,18 @@
   $toast-min-height: 40px;
   $toast-bg:rgba(0,0,0,0.75);
   $border-radius: 4px;
+  @keyframes fade-in {
+    0%{
+      opacity: 0;
+      transform: translate(-50%,100%);
+    }
+    100%{
+      opacity: 100%;
+      transform: translate(-50%,0);
+    }
+  }
   .toast{
+    animation: fade-in 1s;
     position: fixed;
     left: 50%;
     min-height: $toast-min-height;
@@ -106,6 +118,7 @@
     .close{
       padding-left: 16px;
       flex-shrink: 0;
+      cursor: pointer;
     }
     .line{
       border-left: 1px solid #666;

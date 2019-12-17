@@ -50,7 +50,7 @@ new Vue({
                         console.log(`我被关闭了`)
                     }
                 },
-                position: `middle`
+                position: `bottom`
             })
         }
     }
