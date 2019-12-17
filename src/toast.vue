@@ -52,6 +52,7 @@
     mounted() {
       this.updateStyles()
       this.runAutoClose()
+
     },
     methods: {
       updateStyles(){

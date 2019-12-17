@@ -40,17 +40,19 @@ new Vue({
         message: 'well done',
         value: '你好'
     },
-    created() {
-        this.$toast(`我被关闭啊`,{
-           closeButton: {
-               text: `关闭`,
-               callback(toast){
-                   toast.hi()
-                   console.log(`我被关闭了`)
-               }
-           },
-            position: `middle`
-        })
+    methods: {
+        showToast(){
+            this.$toast(`我被关闭啊`,{
+                closeButton: {
+                    text: `关闭`,
+                    callback(toast){
+                        toast.hi()
+                        console.log(`我被关闭了`)
+                    }
+                },
+                position: `middle`
+            })
+        }
     }
 })
 
