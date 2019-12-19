@@ -41,7 +41,7 @@ new Vue({
         value: '你好'
     },
     methods: {
-        showToast(){
+        showToast(position){
             this.$toast(`我被关闭啊`,{
                 closeButton: {
                     text: `关闭`,
@@ -50,8 +50,17 @@ new Vue({
                         console.log(`我被关闭了`)
                     }
                 },
-                position: `bottom`
+                position
             })
+        },
+        showToast1(){
+            this.showToast('top')
+        },
+        showToast2(){
+            this.showToast('middle')
+        },
+        showToast3(){
+            this.showToast('bottom')
         }
     }
 })
