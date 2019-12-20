@@ -14,6 +14,11 @@ import fSide from './side'
 import fFooter from './footer'
 import fToast from './toast'
 import Plugin from './plugin'
+import Tabs from './tabs'
+import TabsHeader from './tabs-header'
+import TabsBody from './tabs-body'
+import TabsItem from './tabs-item'
+import TabsPane from './tabs-pane'
 
 Vue.component(`f-button`,Button)
 Vue.component(`f-icon`,Icon)
@@ -28,6 +33,11 @@ Vue.component(`f-content`,fContent)
 Vue.component(`f-side`,fSide)
 Vue.component(`f-footer`,fFooter)
 Vue.component(`f-toast`,fToast)
+Vue.component(`f-tabs`,Tabs)
+Vue.component(`f-tabs-head`,TabsHeader)
+Vue.component(`f-tabs-body`,TabsBody)
+Vue.component(`f-tabs-item`,TabsItem)
+Vue.component(`f-tabs-pane`,TabsPane)
 
 Vue.use(Plugin)
 
@@ -38,7 +48,8 @@ new Vue({
         loading2: true,
         loading3: false,
         message: 'well done',
-        value: '你好'
+        value: '你好',
+        selectedTab: 'sports'
     },
     methods: {
         showToast(position){
