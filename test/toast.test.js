@@ -20,6 +20,8 @@ describe('Toast',() => {
         }).$mount(div)
         setTimeout(() => {
             expect(document.body.contains(vm.$el)).to.eq(false)
+            div.remove()
+            vm.$destroy()
             done()
         },1500)
     })
@@ -55,9 +57,10 @@ describe('Toast',() => {
         vm.$mount(div)
         let strong = vm.$el.querySelector('#hi')
         expect(strong).to.exist
+        div.remove()
+        vm.$destroy()
     })
     it('接收 position ', function () {
-        const callback = sinon.fake()
         let div = document.createElement('div')
         document.body.append(div)
         const Constructor = Vue.extend(Toast)
@@ -68,6 +71,8 @@ describe('Toast',() => {
         })
         vm.$mount(div)
         expect(vm.$el.classList.contains(`position-bottom`)).to.equal(true)
+        div.remove()
+        vm.$destroy()
     })
 })
 
