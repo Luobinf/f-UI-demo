@@ -6,13 +6,11 @@
 
 <script type="text/javascript">
 export default {
-  data () {
+  inject: ['eventBus'],
+  data(){
     return {
-
+      active: false
     }
-  },
-  components: {
-
   }
 }
 </script>

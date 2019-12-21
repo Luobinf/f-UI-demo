@@ -5,10 +5,12 @@
       <slot v-if="!enableHtml"></slot>
       <div v-else v-html="$slots.default[0]"></div>
     </div>
-    <div class="line" v-if="closeButton" ref="line"></div>
-    <span v-if="closeButton" class="close" @click="onClickClose">
+    <template v-if="closeButton.text">
+      <div class="line" ref="line"></div>
+      <span class="close" @click="onClickClose">
       {{closeButton.text}}
     </span>
+    </template>
   </div>
 </div>
 </template>
@@ -34,7 +36,7 @@
         type: Object,
         default: () => {
           return {
-            text: `关闭`,
+            text: ``,
             callback: undefined
           }
         }
