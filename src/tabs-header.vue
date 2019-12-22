@@ -10,9 +10,6 @@
 <script type="text/javascript">
 export default {
   inject: ['eventBus'],
-  created() {
-
-  }
 }
 </script>
 
