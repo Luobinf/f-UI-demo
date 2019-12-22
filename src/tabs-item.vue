@@ -6,6 +6,7 @@
 
 <script type="text/javascript">
 export default {
+  name: `fTabsItem`,
   data(){
     return {
       active: false
@@ -14,7 +15,8 @@ export default {
   computed: {
     classes(){
       return {
-        active: this.active
+        active: this.active,
+        disabled: this.disabled
       }
     }
   },
@@ -36,18 +38,30 @@ export default {
   },
   methods: {
     changeSelect() {
-      this.eventBus.$emit('update:selected',this.name)
+      if(this.disabled){
+        return
+      }
+      this.eventBus.$emit('update:selected',this.name,this)
     }
   }
 }
 </script>
 
 <style scoped lang="scss">
+  $color: blue;
   .tabs-item{
     flex-shrink: 0;
-    padding: 0 2em;
+    padding: 0 1em;
+    cursor: pointer;
+    height: 100%;
+    display: flex;
+    align-items: center;
     &.active{
-      background: red;
+      color: $color;
+      font-weight: bold;
+    }
+    &.disabled{
+      color: gray;
     }
   }
 </style>

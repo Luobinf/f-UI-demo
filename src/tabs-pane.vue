@@ -6,6 +6,7 @@
 
 <script type="text/javascript">
 export default {
+  name: `fTabsPane`,
   inject: ['eventBus'],
   data(){
     return {
@@ -35,8 +36,9 @@ export default {
 
 <style scoped lang="scss">
   .tabs-pane{
+    padding: 1em;
     &.active{
-      background: red;
+      padding: 0 1em;
     }
   }
 </style>

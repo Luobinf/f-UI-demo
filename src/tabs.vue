@@ -32,8 +32,17 @@ export default {
     }
   },
   mounted() {
-    this.eventBus.$on(`update:selected`,(val) => {
-      this.$emit(`update:selected`,val)
+    this.$children.forEach( (vm) => {
+      if(vm.$options.name === `fTabsHead`) {
+        vm.$children.forEach( (item) => {
+          if(item.$options.name === `fTabsItem` && item.name === this.selected){
+            // this.eventBus.$on(`update:selected`,(val) => {
+            //   this.$emit(`update:selected`,val)
+            // })
+            this.eventBus.$emit(`update:selected`,this.selected,item)  //找到具体的item
+          }
+        })
+      }
     })
   }
 }
