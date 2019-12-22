@@ -42,7 +42,7 @@ export default {
     > .line{
       position: absolute;
       bottom: 0;
-      border-bottom: 1px solid blue;
+      border-bottom: 2px solid #1890ff;
       transition: all 0.6s;
     }
   }

@@ -48,13 +48,13 @@
 <body>
 <div id="app">
     <f-tabs :selected.sync="selectedTab">
+        {{selectedTab}}
         <f-tabs-head>
             <template slot="actions">
                 <button>设置</button>
             </template>
-            <f-tabs-item name="woman" disabled>
+            <f-tabs-item name="woman">
                  美女
-<!--                <f-icon name="settings"></f-icon>-->
             </f-tabs-item>
             <f-tabs-item name="finance">
                 财经
