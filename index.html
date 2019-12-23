@@ -46,20 +46,23 @@
     </style>
 </head>
 <body style="border: 1px solid red;">
+<!--<div style="height: 1000px;border: 1px solid red"></div>-->
 <div id="app" style="padding-top: 100px;padding-left: 200px;">
-
-    <f-popover>
-        <template slot="content">
-            <div>popover内容</div>
-        </template>
-        <button>点我</button>
-    </f-popover>
-    <f-popover>
-        <template slot="content">
-            <div>popover内容</div>
-        </template>
-        <button>点我</button>
-    </f-popover>
+<!--当组件的父元素上有overflowL:hidden时，会让你的弹出框看不见-->
+    <div style="overflow: hidden;border: 1px solid orange;">
+        <f-popover>
+            <template slot="content">
+                <div>popover内容</div>
+            </template>
+            <button>点我</button>
+        </f-popover>
+        <f-popover>
+            <template slot="content">
+                <div>popover内容</div>
+            </template>
+            <button>点我</button>
+        </f-popover>
+    </div>
 <!--    <f-tabs :selected.sync="selectedTab">-->
 <!--        {{selectedTab}}-->
 <!--        <f-tabs-head>-->

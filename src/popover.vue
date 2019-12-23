@@ -1,7 +1,9 @@
 <template>
   <div class="f-popover" @click.stop="xxx">
-    <slot></slot>
-    <div class="content-wrapper" v-if="visible" @click.stop>
+    <span ref="triggerWrapper" class="triggerWrapper">
+        <slot></slot>
+    </span>
+    <div class="content-wrapper" v-if="visible" @click.stop ref="contentWrapper">
       <slot name="content"></slot>
     </div>
   </div>
@@ -15,25 +17,28 @@ export default {
       visible: false
     }
   },
-  components: {
-
-  },
   methods: {
     xxx(){
       this.visible = !this.visible
-      console.log(this.visible)
-      let x = () => {
-        this.visible = false
-        console.log(this.visible)
-        document.removeEventListener('click',x)  //当visible为false时，移除事件监听器
-      }
       this.$nextTick( () => {
+          document.body.append(this.$refs.contentWrapper)
+          let {width,height,left,top} = this.$refs.triggerWrapper.getBoundingClientRect()
+          this.$refs.contentWrapper.style.left = left + window.scrollX +`px`
+          this.$refs.contentWrapper.style.top = top - height + window.scrollY + `px`
+          console.log(width, height, left, top)
+          let eventHandler = () => {
+              this.visible = false
+              document.removeEventListener('click',eventHandler)  //当visible为false时，移除事件监听器
+          }
         if(this.visible === true) {
-          document.addEventListener('click', x)
+          document.addEventListener('click', eventHandler)
         }
       })
     }
-  }
+  },
+    mounted() {
+        console.log(this.$refs.triggerWrapper)
+    }
 }
 </script>
 
@@ -42,11 +47,12 @@ export default {
     border: 1px solid red;
     display: inline-block;
     position: relative;
-    .content-wrapper{
+      .triggerWrapper{
+          display: inline-block;
+      }
+  }
+  .content-wrapper{
       position: absolute;
-      bottom: 100%;
-      left: 0;
       border: 1px solid red;
-    }
   }
 </style>
