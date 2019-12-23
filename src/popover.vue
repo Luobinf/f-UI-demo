@@ -1,7 +1,7 @@
 <template>
-  <div class="f-popover" @click="xxx">
+  <div class="f-popover" @click.stop="xxx">
     <slot></slot>
-    <div class="content-wrapper" v-if="visible">
+    <div class="content-wrapper" v-if="visible" @click.stop>
       <slot name="content"></slot>
     </div>
   </div>
@@ -21,7 +21,17 @@ export default {
   methods: {
     xxx(){
       this.visible = !this.visible
-      console.log(2222)
+      console.log(this.visible)
+      let x = () => {
+        this.visible = false
+        console.log(this.visible)
+        document.removeEventListener('click',x)  //当visible为false时，移除事件监听器
+      }
+      this.$nextTick( () => {
+        if(this.visible === true) {
+          document.addEventListener('click', x)
+        }
+      })
     }
   }
 }

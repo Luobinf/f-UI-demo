@@ -45,16 +45,21 @@
         }
     </style>
 </head>
-<body>
+<body style="border: 1px solid red;">
 <div id="app" style="padding-top: 100px;padding-left: 200px;">
 
     <f-popover>
         <template slot="content">
-            <div>222</div>
+            <div>popover内容</div>
         </template>
         <button>点我</button>
     </f-popover>
-
+    <f-popover>
+        <template slot="content">
+            <div>popover内容</div>
+        </template>
+        <button>点我</button>
+    </f-popover>
 <!--    <f-tabs :selected.sync="selectedTab">-->
 <!--        {{selectedTab}}-->
 <!--        <f-tabs-head>-->
