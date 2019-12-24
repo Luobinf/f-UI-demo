@@ -74,6 +74,9 @@ new Vue({
         },
         showToast3(){
             this.showToast('bottom')
+        },
+        yyy() {
+            console.log(`我被点击了`)
         }
     }
 })
