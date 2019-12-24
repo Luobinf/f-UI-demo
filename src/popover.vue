@@ -23,7 +23,6 @@
         default: `top`,
         validator(val) {
           console.log(val)
-          console.log(2222222)
           return ['top','bottom','left','right'].indexOf(val) >= 0
         }
       }
@@ -32,21 +31,27 @@
       positionContent () {
         document.body.appendChild(this.$refs.contentWrapper)
         let {width, height, top, left} = this.$refs.triggerWrapper.getBoundingClientRect()
-        if(this.position === `top`){
-          this.$refs.contentWrapper.style.left = left + window.scrollX + 'px'
-          this.$refs.contentWrapper.style.top = top + window.scrollY + 'px'
-        } else if(this.position === 'bottom'){
-          this.$refs.contentWrapper.style.left = left + window.scrollX + 'px'
-          this.$refs.contentWrapper.style.top = top + height + window.scrollY + 'px'
-        } else if(this.position === 'left'){
-          this.$refs.contentWrapper.style.left = left + window.scrollX + 'px'
-          let height2 = this.$refs.contentWrapper.getBoundingClientRect().height
-          this.$refs.contentWrapper.style.top = top + (height-height2)/2 + window.scrollY + 'px'
-        } else if (this.position === 'right') {
-          this.$refs.contentWrapper.style.left = left + width + window.scrollX + 'px'
-          let height2 = this.$refs.contentWrapper.getBoundingClientRect().height
-          this.$refs.contentWrapper.style.top = top + (height-height2)/2 + window.scrollY + 'px'
+        let height2 = this.$refs.contentWrapper.getBoundingClientRect().height
+        let positions = {
+          top: {
+            left: left + window.scrollX,
+            top: top + window.scrollY
+          },
+          bottom: {
+            left: left + window.scrollX,
+            top: top + height + window.scrollY
+          },
+          left: {
+            left: left + window.scrollX,
+            top: top + (height-height2)/2 + window.scrollY
+          },
+          right: {
+            left: left + width + window.scrollX,
+            top: top + (height-height2)/2 + window.scrollY
+          }
         }
+        this.$refs.contentWrapper.style.left = positions[this.position].left + `px`
+        this.$refs.contentWrapper.style.top = positions[this.position].top + `px`
       },
       onClickDocument (e) {
         if (this.$refs.popover &&
@@ -165,6 +170,7 @@
         right: calc(100% - 1px);
       }
     }
+
   }
   .buttonWrapper{
     display: inline-block;
