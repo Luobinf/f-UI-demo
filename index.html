@@ -75,8 +75,10 @@
             <button>点我</button>
         </f-popover>
         <f-popover position="left">
-            <template slot="content">
-                <div>popover内容</div>
+            <template slot="content" slot-scope="{close}">
+                <div>popover内容
+
+                <f-button @click="close">关闭</f-button></div>
             </template>
             <button>点我</button>
         </f-popover>
