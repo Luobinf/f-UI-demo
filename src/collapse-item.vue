@@ -1,89 +1,74 @@
 <template>
-  <div class="collapseItem">
-    <div class="title" @click="toggle">
-      {{title}}
-    </div>
-    <div class="content" v-if="open">
-      <slot></slot>
-    </div>
+  <div class="fCollapsePanel">
+    <div class="title" @click="toggle" ref="title">{{title}}</div>
+    <template v-if="open">
+      <div class="line"></div>
+      <div class="content">
+        <slot></slot>
+      </div>
+    </template>
   </div>
 </template>
 
-<script type="text/javascript">
-export default {
-  name: `fCollapseItem`,
-  data(){
-    return {
-      open: false
-    }
-  },
-  props: {
-    title: {
-      type: String || Number,
-      required: true
-    },
-    name: {
-      type: String || Number
-    }
-  },
-  inject: ['eventBus'],
-  mounted() {
-    this.eventBus && this.eventBus.$on(`update:selected`, (name) => {
-      /*这里的this指的是一开始挂载到页面中的collapse-item*/
-      // console.log(this)
-      if(name !== this.name){
-        this.close()
-      } else {
-        this.show()
-      }
-    })
-  },
-  methods: {
-    toggle() {
-      if(this.open){
-        this.open = false
-      } else {
-        // this.open = true
-        this.eventBus && this.eventBus.$emit(`update:selected`,this.name)
+<script>
+  export default {
+    name: `fCollapsePanel`,
+    data() {
+      return {
+        open: false
       }
     },
-    close(){
-      this.open = false
+    props: {
+      title: {
+        type: String
+      },
+      name: {
+        type: String
+      }
     },
-    show(){
-      this.open = true
+    inject: [`eventBus`],
+    methods: {
+      toggle() {
+        if(this.open){
+          this.eventBus && this.eventBus.$emit(`update:removeSelected`,this.name)
+        } else{
+          this.eventBus && this.eventBus.$emit(`update:addSelected`,this.name)
+        }
+      }
+    },
+    mounted(){
+      this.eventBus && this.eventBus.$on(`update:selected`,(names) => {
+        if(names.indexOf(this.name) >= 0) {
+          this.open = true
+        }else{
+          this.open = false
+        }
+      })
     }
-  },
-}
+  };
 </script>
 
 <style scoped lang="scss">
-  .collapseItem{
-    > .title{
-      border: 1px solid #dddddd;
-      margin-top: -1px;
-      margin-left: -1px;
-      margin-right: -1px;
-      min-height: 2em;
-      display: flex;
-      align-items: center;
-      padding: 0 .5em;
+  $border-color: #dddddd;
+  $color:rgba(0, 0, 0, 0.85);
+  $border-radius: 4px;
+  .fCollapsePanel {
+    margin: -1px;
+    border: 1px solid $border-color;
+    color: $color;
+    &:first-child {
+      border-top-left-radius: $border-radius;
+      border-top-right-radius: $border-radius;
     }
-    &:first-child{
-      > .title{
-        border-top-left-radius: 4px;
-        border-top-right-radius: 4px;
-      }
+    .title{
+      padding: 0.5em;
+      cursor: pointer;
     }
-    &:last-child{
-      > .title:last-child{
-        border-bottom-left-radius: 4px;
-        border-bottom-right-radius: 4px;
-      }
+    .line {
+      border-top: 1px solid $border-color;
     }
     .content{
-      padding: 0.5em;
-      border-bottom: 1px solid #dddddd;
+      padding: 1em;
     }
   }
 </style>

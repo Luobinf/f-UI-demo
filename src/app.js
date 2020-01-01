@@ -56,7 +56,8 @@ new Vue({
         loading3: false,
         message: 'well done',
         value: '你好',
-        selectedTab: 'sports'
+        selectedTab: 'sports',
+        collapseTab: '2'
     },
     methods: {
         showToast(position){
