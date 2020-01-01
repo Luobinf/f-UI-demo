@@ -1,6 +1,6 @@
 <template>
   <div class="collapseItem">
-    <div class="title" @click="open=!open">
+    <div class="title" @click="toggle">
       {{title}}
     </div>
     <div class="content" v-if="open">
@@ -11,7 +11,7 @@
 
 <script type="text/javascript">
 export default {
-  name: `fCollapse`,
+  name: `fCollapseItem`,
   data(){
     return {
       open: false
@@ -22,6 +22,29 @@ export default {
       type: String || Number,
       required: true
     }
+  },
+  inject: ['eventBus'],
+  methods: {
+    toggle() {
+      if(this.open){
+        this.open = false
+      } else {
+        this.open = true
+        this.eventBus && this.eventBus.$emit(`update:selected`,this)
+      }
+    },
+    close(){
+      this.open = false
+    }
+  },
+  mounted() {
+    this.eventBus && this.eventBus.$on(`update:selected`, (vm) => {
+      /*这里的this指的是一开始挂载到页面中的collapse-item*/
+      // console.log(this)
+      if(vm !== this){
+        this.close()
+      }
+    })
   }
 }
 </script>
@@ -52,6 +75,7 @@ export default {
     }
     .content{
       padding: 0.5em;
+      border-bottom: 1px solid #dddddd;
     }
   }
 </style>
