@@ -21,31 +21,39 @@ export default {
     title: {
       type: String || Number,
       required: true
+    },
+    name: {
+      type: String || Number
     }
   },
   inject: ['eventBus'],
+  mounted() {
+    this.eventBus && this.eventBus.$on(`update:selected`, (name) => {
+      /*这里的this指的是一开始挂载到页面中的collapse-item*/
+      // console.log(this)
+      if(name !== this.name){
+        this.close()
+      } else {
+        this.show()
+      }
+    })
+  },
   methods: {
     toggle() {
       if(this.open){
         this.open = false
       } else {
-        this.open = true
-        this.eventBus && this.eventBus.$emit(`update:selected`,this)
+        // this.open = true
+        this.eventBus && this.eventBus.$emit(`update:selected`,this.name)
       }
     },
     close(){
       this.open = false
+    },
+    show(){
+      this.open = true
     }
   },
-  mounted() {
-    this.eventBus && this.eventBus.$on(`update:selected`, (vm) => {
-      /*这里的this指的是一开始挂载到页面中的collapse-item*/
-      // console.log(this)
-      if(vm !== this){
-        this.close()
-      }
-    })
-  }
 }
 </script>
 
