@@ -23,7 +23,7 @@
         type: String
       },
       name: {
-        type: String
+        type: [String,Number]
       }
     },
     inject: [`eventBus`],
