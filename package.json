@@ -10,10 +10,7 @@
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Luobinf/f-UI-demo.git"
-  },
+  "repository": "git+https://github.com/Luobinf/f-UI-demo.git",
   "keywords": [
     "vue",
     "ui"
@@ -45,7 +42,7 @@
     "sass": "^1.23.7",
     "sinon": "^7.5.0",
     "sinon-chai": "^3.3.0",
-    "vue-template-compiler": "^2.6.10"
+    "vue-template-compiler": "^2.6.11"
   },
   "alias": {
     "vue": "./node_modules/vue/dist/vue.common.js"
