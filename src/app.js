@@ -22,6 +22,7 @@ import TabsPane from './tabs-pane'
 import Popover from './popover'
 import Collapse from './collapse'
 import CollapseItem from './collapse-item'
+import Cascader from './cascader'
 
 Vue.component(`f-button`,Button)
 Vue.component(`f-icon`,Icon)
@@ -44,7 +45,7 @@ Vue.component(`f-collapse`,TabsPane)
 Vue.component(`f-popover`,Popover)
 Vue.component(`f-collapse`,Collapse)
 Vue.component(`f-collapse-item`,CollapseItem)
-
+Vue.component(`f-cascader`,Cascader)
 
 Vue.use(Plugin)
 
@@ -57,7 +58,37 @@ new Vue({
         message: 'well done',
         value: '你好',
         selectedTab: 'sports',
-        collapseTab: ['2']
+        collapseTab: ['2'],
+        source: [
+            {
+                name: `浙江`,
+                children: [
+                    {name: '杭州',
+                    children: [
+                        {name: '上城区'},
+                        {name: '下城区'},
+                        {name: '江干区'}
+                    ]},
+                    {name: '嘉兴',
+                    children: [
+                        {name: '越秀区'},
+                        {name: '平湖区'}
+                    ]
+                    }
+                ]
+            },
+            {
+                name: '福建',
+                children:[
+                    {name: '福州',
+                    children: [
+                        {name: '1'},
+                        {name: '2'},
+                        {name: '3'}
+                    ]},
+                ]
+            }
+        ]
     },
     methods: {
         showToast(position){

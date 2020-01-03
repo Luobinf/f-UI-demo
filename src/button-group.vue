@@ -19,7 +19,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-    $border-radius: 4px;
+  $border-radius: 4px;
   .f-button-group{
     display: inline-flex;
     vertical-align: top;

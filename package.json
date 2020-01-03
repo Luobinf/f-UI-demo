@@ -23,6 +23,7 @@
   "homepage": "https://github.com/Luobinf/f-UI-demo#readme",
   "dependencies": {
     "plugins": "^0.4.2",
+    "sass-loader": "^8.0.0",
     "vue": "^2.6.10",
     "vue-hot-reload-api": "^2.3.4"
   },
@@ -42,7 +43,8 @@
     "sass": "^1.23.7",
     "sinon": "^7.5.0",
     "sinon-chai": "^3.3.0",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.11",
+    "vuepress": "^1.2.0"
   },
   "alias": {
     "vue": "./node_modules/vue/dist/vue.common.js"
