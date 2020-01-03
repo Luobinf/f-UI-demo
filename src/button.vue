@@ -73,6 +73,7 @@ export default {
     }
     &:active {
       background-color: $button-active-bg;
+
     }
     &:focus {
       outline: none;
