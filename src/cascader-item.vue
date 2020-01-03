@@ -1,27 +1,54 @@
 <template>
-  <div class="page">
-    {{sourceItem.name}}
-    <f-cascader-item
-            v-for="item in sourceItem.children"
-            v-if="sourceItem.children"
-            :sourceItem="item"
-    >
+  <div class="cascaderItem">
+     <div class="left">
+         <div class="label" v-for="item in items" @click="leftSelected = item">
+             {{item.name}}
+         </div>
+     </div>
+      <div class="right" v-if="rightItems">
+          <f-cascader-item :items="rightItems">
 
-    </f-cascader-item>
+          </f-cascader-item>
+      </div>
   </div>
 </template>
 
 <script type="text/javascript">
 export default {
-  name: `fCascaderItem`,
-  props: {
-    sourceItem: {
-      type: Object
+    name: `fCascaderItem`,
+    props: {
+        items: {
+            type: Array
+         }
+    },
+    data() {
+        return {
+            leftSelected: null
+        }
+    },
+    computed: {
+        rightItems(){
+            if(this.leftSelected && this.leftSelected.children) {
+                return this.leftSelected.children
+            } else {
+                return null
+            }
+        }
     }
-  }
 }
 
 </script>
 
 <style scoped lang="scss">
+    .cascaderItem {
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        .left {
+            border: 1px solid red;
+        }
+        .right {
+            margin-top: -1px;
+        }
+    }
 </style>
