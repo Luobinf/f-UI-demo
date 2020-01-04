@@ -10,7 +10,7 @@
 </template>
 
 <script type="text/javascript">
-import Icon from './icon'
+import Icon from '../icon'
 export default {
     name: 'fjq-button',
     components: {

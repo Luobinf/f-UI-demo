@@ -4,7 +4,9 @@
       <slot></slot>
     </div>
     <div class="popoverWrapper" v-if="popoverVisible">
-        <f-cascader-item :items="source" class="popover" :height="popoverHeight">
+        <f-cascader-item :items="source" class="popover" :height="popoverHeight"
+            :selected="selected" @update:selected="onUpdateSelected"
+        >
 
         </f-cascader-item>
     </div>
@@ -29,11 +31,22 @@ export default {
     },
     popoverHeight: {
       type: String
-    }
+    },
+      selected: {
+        type: Array,
+          default: () => {
+              return []
+          }
+      }
   },
   components: {
     fCascaderItem
-  }
+  },
+    methods: {
+        onUpdateSelected(newSelected) {
+            this.$emit('update:selected',newSelected)
+        }
+    }
 }
 </script>
 

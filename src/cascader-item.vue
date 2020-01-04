@@ -1,13 +1,18 @@
 <template>
   <div class="cascaderItem" :style="{height:height}">
      <div class="left">
-         <div class="label" v-for="item in items" @click="leftSelected = item">
+         <div class="label" v-for="item in items" @click="onClickLabel(item)">
              {{item.name}}
              <f-icon name="arrow-right" v-if="item.children"></f-icon>
          </div>
      </div>
       <div class="right" v-if="rightItems">
-          <f-cascader-item :items="rightItems" :height="height"></f-cascader-item>
+          <f-cascader-item :items="rightItems" :height="height" ref="right"
+            :selected="selected" :level="level+1"
+            @update:selected="onUpdateSelected"
+          >
+
+          </f-cascader-item>
       </div>
   </div>
 </template>
@@ -25,20 +30,41 @@ export default {
          },
         height: {
             type: String
-        }
-    },
-    data() {
-        return {
-            leftSelected: null
+        },
+        selected: {
+            type: Array,
+            default: () => []
+        },
+        level: {
+            type: Number,
+            default: 0
         }
     },
     computed: {
         rightItems(){
-            if(this.leftSelected && this.leftSelected.children) {
-                return this.leftSelected.children
+            let currentSelected = this.selected[this.level]
+            if(currentSelected && currentSelected.children) {
+                return currentSelected.children
             } else {
                 return null
             }
+        }
+    },
+    mounted() {
+
+    },
+    methods: {
+        onClickLabel(value) {
+            // Vue检测不到数组的变化
+            // this.selected[this.level] = value
+            // this.$set(this.selected,this.level,value)
+            let copy = JSON.parse(JSON.stringify(this.selected))
+            copy[this.level] = value
+            copy.splice(this.level + 1)   //重点 一句话
+            this.$emit('update:selected',copy)
+        },
+        onUpdateSelected(newSelected){
+            this.$emit('update:selected',newSelected)
         }
     }
 }
@@ -52,6 +78,7 @@ export default {
         justify-content: flex-start;
         /*先将高度写死*/
         height: 100px;
+
 
         .left {
             height: 100%;

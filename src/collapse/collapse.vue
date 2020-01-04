@@ -5,7 +5,7 @@
 </template>
 
 <script>
-  import Vue from 'vue'
+  import Vue from 'vue/types'
   export default {
     name: `fCollapse`,
     data(){
