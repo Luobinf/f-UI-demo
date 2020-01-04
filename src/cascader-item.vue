@@ -3,13 +3,11 @@
      <div class="left">
          <div class="label" v-for="item in items" @click="leftSelected = item">
              {{item.name}}
-             <f-icon name="arrow-right"></f-icon>
+             <f-icon name="arrow-right" v-if="item.children"></f-icon>
          </div>
      </div>
       <div class="right" v-if="rightItems">
-          <f-cascader-item :items="rightItems" :height="height">
-
-          </f-cascader-item>
+          <f-cascader-item :items="rightItems" :height="height"></f-cascader-item>
       </div>
   </div>
 </template>
@@ -48,27 +46,30 @@ export default {
 </script>
 
 <style scoped lang="scss">
-    @import "var";
     .cascaderItem {
         display: flex;
         align-items: flex-start;
         justify-content: flex-start;
         /*先将高度写死*/
         height: 100px;
+
         .left {
             height: 100%;
             padding: 0.3em 0;
         }
+
         .right {
             height: 100%;
             border-left: 1px solid #dddddd;
         }
-        .label{
+
+        .label {
             white-space: nowrap;
             padding: 0.3em 1em;
             display: flex;
             align-items: center;
-            .icon{
+
+            .icon {
                 margin-left: 1em;
                 transform: scale(0.8);
             }
