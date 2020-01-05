@@ -1,7 +1,7 @@
 <template>
   <div class="cascader">
     <div class="trigger" @click="popoverVisible=!popoverVisible">
-      <slot></slot>
+      {{result || '请选择'}}
     </div>
     <div class="popoverWrapper" v-if="popoverVisible">
         <f-cascader-item :items="source" class="popover" :height="popoverHeight"
@@ -39,13 +39,18 @@ export default {
           }
       }
   },
-  components: {
-    fCascaderItem
-  },
+    components: {
+        fCascaderItem
+     },
     methods: {
         onUpdateSelected(newSelected) {
             this.$emit('update:selected',newSelected)
         }
+    },
+    computed: {
+      result() {
+          return this.selected.map( (item) => item.name).join('/')
+      }
     }
 }
 </script>
@@ -55,9 +60,13 @@ export default {
       position: relative;
 
       .trigger {
+          height: 2em;
+          min-width: 10em;
+          display: inline-flex;
+          align-items: center;
+          padding: 0.2em 1em;
           border: 1px solid black;
-          height: 32px;
-          width: 100px;
+          border-radius: 4px;
       }
 
       .popoverWrapper {
@@ -67,6 +76,7 @@ export default {
           left: 0;
           background-color: white;
           box-shadow: 0 0 5px rgba(0,0,0,0.3);
+          margin-top: 5px;
       }
   }
 </style>
