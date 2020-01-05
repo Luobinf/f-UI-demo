@@ -4,8 +4,8 @@
     <p>{{selected && selected[1] && selected[1].name || '空'}}</p>
     <p>{{selected && selected[2] && selected[2].name || '空'}}</p>
     <div style="padding: 50px;">
-      <f-cascader :source="source" popover-height="200px" :selected="selected"
-                   @update:selected="selected = $event"
+      <f-cascader :source="source" popover-height="200px" :selected.sync="selected"
+                   @update:selected="xxx"
       >
       </f-cascader>
     </div>
@@ -15,24 +15,55 @@
 
 <script type="text/javascript">
 import fCascader from "./cascader";
-import db from './db'
+import db from './db';
 
-function ajax(parent_id = 0) {
-  return db.filter((item) => {
-    return item.parent_id === 0
+function ajax1(parent_id = 0,success) {
+  let id = setTimeout(() => {
+    let result = db.filter((item) => {
+      return item.parent_id === parent_id
+    })
+    success(result)
+  },1000)
+  return id
+}
+
+function ajax2(parent_id = 0) {
+  return new Promise((resolve,reject) => {
+    let result = db.filter((item) => {
+      return item.parent_id === parent_id
+    })
+    resolve(result)
   })
 }
-console.log(ajax())
 export default {
   name: 'demo',
   data() {
     return {
       selected: [],
-      source: ajax()
+      source: []
     };
   },
   components: {
     "f-cascader": fCascader
+  },
+  created() {
+    ajax2(0).then((result) => {
+      this.source = result
+      // console.log(this.source)
+    })
+  },
+  methods: {
+    xxx() {
+      ajax2(this.selected[0].id).then((result) => {
+        let lastLevelSelected = this.source.filter((item) => {
+          return item.id === this.selected[0].id
+        })[0]
+        // console.log(lastLevelSelected)
+        // lastLevelSelected.children = result
+        this.$set(lastLevelSelected,'children',result)
+        // console.log(this.source)
+      })
+    }
   }
 };
 </script>
