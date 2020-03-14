@@ -5,17 +5,30 @@
     <p>{{selected && selected[2] && selected[2].name || '空'}}</p>
     <div style="padding: 50px;">
       <f-cascader :source="source" popover-height="200px" :selected.sync="selected"
-                   @update:selected="xxx"
+                   @update:selected="xxx" :load-data="loadData"
       >
       </f-cascader>
     </div>
 
+    <f-button :loading="true"></f-button>
+    <hr>
+    <f-button-group>
+      <f-button></f-button>
+      <f-button></f-button>
+    </f-button-group>
+    <f-input error="kl">
+
+    </f-input>
+    <f-input></f-input>
   </div>
 </template>
 
 <script type="text/javascript">
 import fCascader from "./cascader";
 import db from './db';
+import fButton from './button/button'
+import fButtonGroup from './button/button-group'
+import fInput from './input'
 
 function ajax1(parent_id = 0,success) {
   let id = setTimeout(() => {
@@ -44,7 +57,10 @@ export default {
     };
   },
   components: {
-    "f-cascader": fCascader
+    "f-cascader": fCascader,
+    fButton,
+    fButtonGroup,
+    fInput
   },
   created() {
     ajax2(0).then((result) => {
@@ -62,6 +78,12 @@ export default {
         // lastLevelSelected.children = result
         this.$set(lastLevelSelected,'children',result)
         // console.log(this.source)
+      })
+    },
+    loadData(node,fn) {
+      let id = node.id
+      ajax2(id).then(result => {
+        fn(result)   //别人传给我的函数，我需要在这里调用一下
       })
     }
   }
