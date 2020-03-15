@@ -8,7 +8,7 @@
   </button>
 </template>
 <script type="text/javascript">
-  import fIcon from "./icon";
+  import fIcon from "../icon";
   export default {
     name: "fButton",
     data() {

@@ -1,8 +1,8 @@
 //app.js是整个是整个应用程序的入口
 import Vue from 'vue'
-import Button from './button'
+import Button from './Button/button'
 import Icon from './icon'
-import ButtonGroup from './button-group'
+import ButtonGroup from './Button/button-group'
 import Input from './input'
 import Ginput from './in'
 import fRow from './row'

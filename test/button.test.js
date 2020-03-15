@@ -4,7 +4,7 @@ chai.use(spies)
 const expect = chai.expect; //引入断言库
 
 import Vue from 'vue'
-import Button from '../src/button'
+import Button from '../src/Button/button'
 
 Vue.config.productionTip = false
 Vue.config.devtools = false
