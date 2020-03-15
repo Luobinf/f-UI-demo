@@ -61,9 +61,10 @@
   $font-large-size: 16px;
   $border-radius: 4px;
   $color: rgba(0, 0, 0, 0.65);
-  $border-color-hover: #40a9ff;
-  $color-hover: #40a9ff;
-
+  $border-color-hover: #5cadff;
+  $color-hover: #5cadff;
+  $border-color-active: #3091f2;
+  $color-active: #3091f2;
   @keyframes spin {
     0% {
       transform: rotate(0deg);
@@ -82,17 +83,19 @@
     border-radius: $border-radius;
     color: $color;
     cursor: pointer;
-    transition: all 0.5s;
+    transition: color 0.5s;
     background-color: white;
     outline: none;
-    &:focus {
-      outline: none;
-    }
     &.default {
       border: 1px solid $border-color;
       &:hover {
         color: $color-hover;
         border: 1px solid $border-color-hover;
+      }
+      &:active {
+        outline: none;
+        color: $color-active;
+        border-color: $border-color-active;
       }
     }
 
@@ -102,6 +105,11 @@
         color: $color-hover;
         border: 1px dashed $border-color-hover;
       }
+      &:active {
+        outline: none;
+        color: $color-active;
+        border-color: $border-color-active;
+      }
     }
 
     &.primary {
@@ -109,8 +117,12 @@
       color: #fff;
       box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
       border: none;
+      transition: background-color 0.5s;
       &:hover {
         background-color: rgb(64, 169, 255);
+      }
+      &:active {
+        background-color: #1890ff;
       }
     }
 
@@ -119,8 +131,13 @@
       color: #fff;
       box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
       border: none;
+      transition: background-color 0.5s;
       &:hover {
         background-color: rgb(255, 120, 117);
+      }
+      &:active {
+        outline: none;
+       background-color :#ff4d4f;
       }
     }
 

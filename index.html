@@ -56,7 +56,15 @@
         <f-button>上一页</f-button>
         <f-button>下一页</f-button>
     </f-button-group>
-
+    <f-button icon="loading" :loading="true" icon-position="right" type="dashed">
+        点击
+    </f-button>
+    <f-button icon="loading" :loading="true" icon-position="right" type="danger">
+        点击
+    </f-button>
+    <f-button icon="loading" :loading="true" icon-position="right" type="primary">
+        点击
+    </f-button>
     <f-collapse :selected.sync="collapseTab" single>
         <f-collapse-item title="标题1" name="1">内容1</f-collapse-item>
         <f-collapse-item title="标题2" name="2">内容2</f-collapse-item>

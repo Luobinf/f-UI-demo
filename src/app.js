@@ -83,6 +83,9 @@ new Vue({
         },
         yyy() {
             console.log(`我被点击了`)
+        },
+        xxxxxx() {
+            console.log('我被点击了')
         }
     }
 })
