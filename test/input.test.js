@@ -5,89 +5,125 @@ import Input from '../src/input'
 Vue.config.productionTip = false
 Vue.config.devtools = false
 
-
-//Mocha是一个单元测试框架库,describe和it是Mocha提供的
-describe('Input', () => {
-    //BDD 行为测试驱动
-    it('存在.', () => {
-        expect(Input).to.exist //不是falsy值就可以
+describe('测试Input.vue组件', () => {
+    it('Input存在', () => {
+        expect(Input).to.be.ok
     })
-    describe('验证props',() => {
-        const Constructor = Vue.extend(Input)
-        let vm
-        afterEach(() => {
-            vm.$destroy()
-        })
-        it('接收value',() => {
-            vm = new Constructor({
-                propsData: {
-                    value: '1234'
-                }
-            }).$mount()
-            const inputElement = vm.$el.querySelector('input')
-            expect(inputElement.value).to.equal('1234')
-        })
 
-        it('接收disabled',() => {
-          vm = new Constructor({
-                propsData: {
-                    value: '1234',
-                    disabled: true
-                }
-            }).$mount()
-            const inputElement = vm.
-            $el.querySelector('input')
-            expect(inputElement.disabled).to.equal(true)
-        })
-
-        it('接收readonly',() => {
-            vm = new Constructor({
-                propsData: {
-                    value: '1234',
-                    readonly:true
-                }
-            }).$mount()
-            const inputElement = vm.$el.querySelector('input')
-            expect(inputElement.readOnly).to.equal(true)
-        })
-        it('接收error',() => {
-            vm = new Constructor({
-                propsData: {
-                    value: '1',
-                    error: `不能少于两个字`
-                }
-            }).$mount()
-            const useElement = vm.$el.querySelector('use')
-            expect(useElement.getAttribute("xlink:href")).to.equal('#i-error')
-            const errorMessageElement = vm.$el.querySelector('.errorMessage')
-            expect(errorMessageElement.innerText).to.equal('不能少于两个字')
-        })
+    it('可以接受value属性', function () {
+        let Constructor = Vue.extend(Input)
+        let vm = new Constructor({
+            propsData: {
+                value: 23
+            }
+        }).$mount()
+        let input = vm.$el.querySelector('input')
+        expect(input.value).to.equal('23')
+        vm.$el.remove()
+        vm.$destroy()
     })
-    describe('事件',() => {
-        const Constructor = Vue.extend(Input)
-        let vm
-        afterEach(() => {
-            vm.$destroy()
-        })
-        it(`支持change/input/focus/blur事件`,() => {
-            ["change","input","focus","blur"].forEach((eventName) => {
-                vm = new Constructor().$mount()
-                const callback = sinon.fake(); //相当于是一个spy函数
-                vm.$on(eventName, callback)
-                //触发input的change事件
-                let event = new Event(eventName)
-                Object.defineProperty(event,'target',{
-                    value: {
-                        value: `welcome`
-                    },
-                    enumerable: true
-                })
-                //触发事件
-                let inputElement = vm.$el.querySelector('input')
-                inputElement.dispatchEvent(event)
-                expect(callback).to.have.been.calledWith('welcome')
-            })
-        })
 
+    it('验证disabled属性', function () {
+        const div = document.createElement('div')
+        document.body.append(div)
+        let Constructor = Vue.extend(Input)
+        let vm = new Constructor({
+            propsData: {
+                disabled: true
+            }
+        }).$mount(div)
+        let input = vm.$el.querySelector('input')
+        expect(input.disabled).to.equal(true)
+        vm.$el.remove()
+        vm.$destroy()
+    })
+
+    it('验证readonly属性', function () {
+        const div = document.createElement('div')
+        document.body.append(div)
+        let Constructor = Vue.extend(Input)
+        let vm = new Constructor({
+            propsData: {
+                readonly: true
+            }
+        }).$mount(div)
+        let input = vm.$el.querySelector('input')
+        expect(input.readOnly).to.equal(true)
+        vm.$el.remove()
+        vm.$destroy()
+    })
+
+    it('传入了error之后icon存在',() => {
+        let Constructor = Vue.extend(Input)
+        let vm = new Constructor({
+            propsData: {
+                error: '密码错了'
+            }
+        }).$mount()
+        let useElement = vm.$el.querySelector('use')
+        expect(useElement.getAttribute('xlink:href')).to.equal('#i-error')
+    })
+
+    it('传入了error之后span存在', function () {
+        let Constructor = Vue.extend(Input)
+        let vm = new Constructor({
+            propsData: {
+                error: '密码错了'
+            }
+        }).$mount()
+        let spanElement = vm.$el.querySelector('.errorMessage')
+        expect(spanElement.innerText).to.equal(`密码错了`)
+    })
+
+    it('验证change事件', function () {
+        let Constructor = Vue.extend(Input)
+        let vm = new Constructor({
+
+        }).$mount()
+        const callback = sinon.fake(); //相当于是一个spy函数
+        vm.$on('change',callback)
+        let inputElement = vm.$el.querySelector('input')
+
+        //js主动触发事件
+        let evt = document.createEvent("HTMLEvents");
+        evt.initEvent("change", false, true);
+        inputElement.dispatchEvent(evt);
+        expect(callback).to.have.been.called
+    })
+    it('验证input事件',() => {
+        let Constructor = Vue.extend(Input)
+        let vm = new Constructor({}).$mount()
+        const callback = sinon.fake()
+        vm.$on('input',callback)
+        let inputElement = vm.$el.querySelector('input')
+
+        let evt = document.createEvent("HTMLEvents")
+        evt.initEvent("input", false, true)
+        inputElement.dispatchEvent(evt);
+        expect(callback).to.have.been.called
+    })
+    it('验证focus事件',() => {
+        let Constructor = Vue.extend(Input)
+        let vm = new Constructor({}).$mount()
+        const callback = sinon.fake()
+        vm.$on('focus',callback)
+        let inputElement = vm.$el.querySelector('input')
+
+        let evt = document.createEvent("HTMLEvents")
+        evt.initEvent("focus", false, true)
+        inputElement.dispatchEvent(evt);
+        expect(callback).to.have.been.called
+    })
+    it('验证blur事件',() => {
+        let Constructor = Vue.extend(Input)
+        let vm = new Constructor({}).$mount()
+        const callback = sinon.fake()
+        vm.$on('blur',callback)
+        let inputElement = vm.$el.querySelector('input')
+
+        let evt = document.createEvent("HTMLEvents")
+        evt.initEvent("blur", false, true)
+        inputElement.dispatchEvent(evt);
+        expect(callback).to.have.been.called
     })
 })

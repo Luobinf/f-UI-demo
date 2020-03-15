@@ -48,29 +48,38 @@
 <body style="border: 1px solid red;">
 <!--<div style="height: 1000px;border: 1px solid red"></div>-->
 <div id="app" style="padding: 100px;">
-
-    <f-button icon="loading" :loading="true" icon-position="right">
-        点击
-    </f-button>
-    <f-button-group>
-        <f-button>上一页</f-button>
-        <f-button>下一页</f-button>
-    </f-button-group>
-    <f-button icon="loading" :loading="true" icon-position="right" type="dashed">
-        点击
-    </f-button>
-    <f-button icon="loading" :loading="true" icon-position="right" type="danger">
-        点击
-    </f-button>
-    <f-button icon="loading" :loading="true" icon-position="right" type="primary">
-        点击
-    </f-button>
-    <f-collapse :selected.sync="collapseTab" single>
-        <f-collapse-item title="标题1" name="1">内容1</f-collapse-item>
-        <f-collapse-item title="标题2" name="2">内容2</f-collapse-item>
-        <f-collapse-item title="标题3" name="3">内容3</f-collapse-item>
-    </f-collapse>
-    {{collapseTab}}
+    <div>
+        <f-button icon="loading" :loading="true" icon-position="right">
+            点击
+        </f-button>
+        <f-button-group>
+            <f-button>上一页</f-button>
+            <f-button>下一页</f-button>
+        </f-button-group>
+        <f-button icon="loading" :loading="true" icon-position="right" type="dashed">
+            点击
+        </f-button>
+        <f-button icon="loading" :loading="true" icon-position="right" type="danger">
+            点击
+        </f-button>
+        <f-button icon="loading" :loading="true" icon-position="right" type="primary">
+            点击
+        </f-button>
+    </div>
+    <div>
+        <f-input error="错误信息"></f-input>
+        <f-input></f-input>
+        <f-input readonly></f-input>
+        <f-input disabled></f-input>
+    </div>
+    <div>
+        <f-collapse :selected.sync="collapseTab" single>
+            <f-collapse-item title="标题1" name="1">内容1</f-collapse-item>
+            <f-collapse-item title="标题2" name="2">内容2</f-collapse-item>
+            <f-collapse-item title="标题3" name="3">内容3</f-collapse-item>
+        </f-collapse>
+        {{collapseTab}}
+    </div>
 <!--当组件的父元素上有overflowL:hidden时，会让你的弹出框看不见-->
 <!--    <div style="overflow: hidden;">-->
 <!--        <f-popover position="top" trigger="hover">-->
