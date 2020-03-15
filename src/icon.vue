@@ -5,7 +5,7 @@
 </template>
 
 <script type="text/javascript">
-  import '../svg'
+  import './svg'
   export default {
     name: 'fIcon',
     props: {

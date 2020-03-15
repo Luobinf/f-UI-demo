@@ -1,4 +1,8 @@
+const spies = require('chai-spies')
+chai.use(spies)
+
 const expect = chai.expect; //引入断言库
+
 import Vue from 'vue'
 import Button from '../src/button'
 
@@ -24,7 +28,6 @@ describe('Button', () => {
             }
         }).$mount()
         let useElement = vm.$el.querySelector('use')
-        console.log(useElement)
         expect(useElement.getAttribute('xlink:href')).to.equal('#i-settings')
         vm.$destroy()
     })
@@ -47,11 +50,12 @@ describe('Button', () => {
         let Constructor = Vue.extend(Button)
         let vm = new Constructor({
             propsData: {
-
+                icon: 'settings'
             }
         }).$mount(div)
-        let iconElement = vm.$el.querySelector('.icon')
-        expect(getComputedStyle('iconElement').order).to.equal(1)
+        let svg = vm.$el.querySelector('svg')
+        let order = window.getComputedStyle(svg).order
+        expect(order).to.equal('1')
         vm.$el.remove()
         vm.$destroy()
     })
@@ -63,40 +67,43 @@ describe('Button', () => {
         let vm = new Constructor({
             propsData: {
                 icon: 'settings',
-                'icon-position': 'right'
+                iconPosition: 'right'
             }
         }).$mount(div)
-        let iconElement = vm.$el.querySelector('.icon')
-        expect(getComputedStyle('iconElement').order).to.equal(2)
+        let svg = vm.$el.querySelector('svg')
+        let order = window.getComputedStyle(svg).order
+        expect(order).to.equal('2')
         vm.$el.remove()
         vm.$destroy()
     })
 
-    it('默认size为medium',() => {
+    it('button默认size为medium',() => {
         const div = document.createElement('div')
         document.body.append(div)
         let Constructor = Vue.extend(Button)
         let vm = new Constructor({
             propsData: {
+            },
+            mounted() {
+                expect(this.$el.classList.contains('medium')).to.equal(true)
             }
         }).$mount(div)
-        let buttonElement = vm.$el.querySelector('button')
-        expect(buttonElement.classList.contains('medium')).to.equal(true)
         vm.$el.remove()
         vm.$destroy()
     })
 
-    it('可以接受size,将size大小设置为small',() => {
+    it('button可以接受size,将size大小设置为small',() => {
         const div = document.createElement('div')
         document.body.append(div)
         let Constructor = Vue.extend(Button)
         let vm = new Constructor({
             propsData: {
                 size: 'small'
+            },
+            mounted() {
+                expect(this.$el.classList.contains('small')).to.equal(true)
             }
         }).$mount(div)
-        let buttonElement = vm.$el.querySelector('button')
-        expect(buttonElement.classList.contains('small')).to.equal(true)
         vm.$el.remove()
         vm.$destroy()
     })
@@ -107,10 +114,27 @@ describe('Button', () => {
         let Constructor = Vue.extend(Button)
         let vm = new Constructor({
             propsData: {
+            },
+            mounted() {
+                expect(this.$el.classList.contains('default')).to.equal(true)
             }
         }).$mount(div)
-        let buttonElement = vm.$el.querySelector('button')
-        expect(buttonElement.classList.contains('default')).to.equal(true)
+        vm.$el.remove()
+        vm.$destroy()
+    })
+
+    it('button可以接受type，设置为dashed',() => {
+        const div = document.createElement('div')
+        document.body.append(div)
+        let Constructor = Vue.extend(Button)
+        let vm = new Constructor({
+            propsData: {
+                type: 'dashed'
+            },
+            mounted() {
+                expect(this.$el.classList.contains('dashed')).to.equal(true)
+            }
+        }).$mount(div)
         vm.$el.remove()
         vm.$destroy()
     })
@@ -122,11 +146,9 @@ describe('Button', () => {
                 icon: 'settings',
             }
         }).$mount()
-
-        const callback = sinon.fake(); //相当于是一个spy函数
+        const callback = sinon.spy(); //监视函数
         vm.$on('click', callback)
         vm.$el.click()
         expect(callback).to.have.been.called
-
     })
 })
