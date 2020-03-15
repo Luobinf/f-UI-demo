@@ -1,22 +1,22 @@
-const expect = chai.expect;
+const expect = chai.expect; //引入断言库
 import Vue from 'vue'
 import Button from '../src/button'
 
 Vue.config.productionTip = false
 Vue.config.devtools = false
 
-//下面it和花括号一样用来隔离作用域的，每一个it都是一个测试用例，测试哦那管理的名字是
-//第一个参数；第二个参数为所要测试的代码，写在了一个函数中。
+//下面it和花括号一样用来隔离作用域的，每一个it都是一个测试用例
+//第一个参数是描述的名字；第二个参数为所要测试的代码，写在了一个函数中，实际执行的函数。
 
 //Mocha是一个单元测试框架库
 describe('Button', () => {
-    //BDD 行为测试驱动
+    //BDD 行为测试驱动 TDD测试驱动开发
     //这里描述了Button的一系列行为
-    it('存在.', () => {
+    it('测试Button存在.', () => {
         expect(Button).to.be.ok //不是falsy值就可以
     })
     it('可以设置icon.', () => {
-        const Constructor = Vue.extend(Button)
+        const Constructor = Vue.extend(Button) //通过Vue.extend()生成一个构造类，创建一个子类。
         const vm = new Constructor({
             propsData: {
                 icon: 'settings'
