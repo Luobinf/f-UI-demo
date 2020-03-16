@@ -16,7 +16,7 @@ export default {
   },
   mounted(){
     this.$children.forEach((vm) => {
-      if(vm.$options.name === 'fSide'){
+      if(vm.$options.name === 'fSider'){
         this.layoutClass.hasSider = true
       }
     })

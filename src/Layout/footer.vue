@@ -11,7 +11,4 @@
 </script>
 
 <style scoped lang="scss">
-  .layout{
-
-  }
 </style>

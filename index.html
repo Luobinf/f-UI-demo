@@ -1,21 +1,219 @@
-<template>
-  <div class="page">
-
-  </div>
-</template>
-
-<script type="text/javascript">
-export default {
-  data () {
-    return {
-
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>f组件库</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-  },
-  components: {
 
-  }
-}
-</script>
+    html {
+      --button-height: 32px;
+      --font-size: 14px;
+      --button-bg: white;
+      --button-active-bg: #eee;
+      --border-radius: 4px;
+      --color: #333;
+      --border-color: #999;
+      --border-color-hover: #666;
+    }
+    body {
+      font-size: var(--font-size);
+    }
+    .demo{
+      min-height: 100px;
+    }
+    .sider{
+      background: skyblue;
+      width: 200px;
+    }
+    .header{
+      height: 100px;
+      background-color: #999999;
+    }
+    .content{
+      background-color: white;
+    }
+    .footer{
+      height: 50px;
+      background-color: #cccccc;
+    }
+  </style>
+</head>
+<body style="border: 1px solid red;">
+<!--<div style="height: 1000px;border: 1px solid red"></div>-->
+<div id="app" style="padding: 100px;">
+  <div>
+    <!--        <f-button icon="loading" :loading="true" icon-position="right">-->
+    <!--            点击-->
+    <!--        </f-button>-->
+    <f-button-group>
+      <f-button>上一页</f-button>
+      <!--            <f-button>下一页</f-button>-->
+    </f-button-group>
+    <!--        <f-button icon="loading" :loading="true" icon-position="right" type="dashed">-->
+    <!--            点击-->
+    <!--        </f-button>-->
+    <!--        <f-button icon="loading" :loading="true" icon-position="right" type="danger">-->
+    <!--            点击-->
+    <!--        </f-button>-->
+    <!--        <f-button icon="loading" :loading="true" icon-position="right" type="primary">-->
+    <!--            点击-->
+    <!--        </f-button>-->
+  </div>
+  <div>
+    <f-input error="错误信息"></f-input>
+    <f-input></f-input>
+    <f-input readonly></f-input>
+    <f-input disabled></f-input>
+  </div>
+  <div>
+    <f-collapse :selected.sync="collapseTab" single>
+      <f-collapse-item title="标题1" name="1">内容1</f-collapse-item>
+      <f-collapse-item title="标题2" name="2">内容2</f-collapse-item>
+      <f-collapse-item title="标题3" name="3">内容3</f-collapse-item>
+    </f-collapse>
+    {{collapseTab}}
+  </div>
+  <section style="margin-top: 100px">
+    <div style="margin: 0 0 0 100px">
+      <f-popover width="250" title="Title">
+        <template v-slot:content>
+          <p>Content内容</p>
+          <p>Content内容</p>
+        </template>
+        <f-button>Top</f-button>
+      </f-popover>
+      <f-popover width="250" title="Title" :visible.sync="visible">
+        <template v-slot:content>
+          <p>Content内容</p>
+          <p>Content内容</p>
+          <f-button @click="visible = false" style="margin-left: 60%">Close</f-button>
+        </template>
+        <f-button>Bottom</f-button>
+      </f-popover>
+    </div>
+  </section>
+  <div style="margin-top: 20px;">
+    <f-button @click="showToast1('top')">top</f-button>
+    <f-button @click="showToast2('middle')">middle</f-button>
+    <f-button @click="showToast3('bottom')">bottom</f-button>
+  </div>
+  <div style="margin-top: 20px;">
+    <f-tabs :selected.sync="activeName" @tab-click="handleClick">
+      <!--   name表示选项卡的别名   -->
+      <f-tab-pane label="用户管理配置" name="first">用户管理</f-tab-pane>
+      <f-tab-pane label="配置管理" name="second">配置管理</f-tab-pane>
+      <f-tab-pane label="角色管理哈哈哈哈" name="third">角色管理</f-tab-pane>
+      <f-tab-pane label="定时任务补偿" name="forth" disabled>定时任务补偿</f-tab-pane>
+    </f-tabs>
+    当前激活的选项卡名字为: {{activeName}}
+  </div>
+  <div>
+        <f-layout>
+          <f-sider>sider</f-sider>
+            <f-layout>
+                <f-header class="demo header">header</f-header>
+                <f-content class="demo content">main</f-content>
+                <f-footer class="demo footer">footer</f-footer>
+            </f-layout>
+        </f-layout>
+  </div>
+  <!--当组件的父元素上有overflowL:hidden时，会让你的弹出框看不见-->
+  <!--    <div style="overflow: hidden;">-->
+  <!--        <f-popover position="top" trigger="hover">-->
+  <!--            <template slot="content">-->
+  <!--                <div>popover内v看看</div>-->
+  <!--            </template>-->
+  <!--            <button>点我</button>-->
+  <!--        </f-popover>-->
+  <!--        <f-popover position="bottom" trigger="hover">-->
+  <!--            <template slot="content">-->
+  <!--                <div>popover内v看看</div>-->
+  <!--            </template>-->
+  <!--            <button>点我</button>-->
+  <!--        </f-popover>-->
+  <!--        <f-popover position="left" trigger="hover">-->
+  <!--            <template slot="content">-->
+  <!--                <div>popover内v看看</div>-->
+  <!--            </template>-->
+  <!--            <button>点我</button>-->
+  <!--        </f-popover>-->
+  <!--        <f-popover position="right" trigger="hover">-->
+  <!--            <template slot="content">-->
+  <!--                <div>popover内v看看</div>-->
+  <!--            </template>-->
+  <!--            <button>点我</button>-->
+  <!--        </f-popover>-->
+  <!--        <f-popover position="left">-->
+  <!--            <template slot="content" slot-scope="{close}">-->
+  <!--                <div>popover内容-->
 
-<style scoped>
-</style>
+  <!--                <f-button @click="close">关闭</f-button></div>-->
+  <!--            </template>-->
+  <!--            <button>点我</button>-->
+  <!--        </f-popover>-->
+  <!--    </div>-->
+
+  <!--    <f-layout style="height: 100vh;">-->
+  <!--        <f-side class="demo side">side</f-side>-->
+  <!--        <f-layout>-->
+  <!--            <f-header class="demo header">header</f-header>-->
+  <!--            <f-content class="demo content">content</f-content>-->
+  <!--            <f-footer class="demo footer">footer</f-footer>-->
+  <!--        </f-layout>-->
+  <!--    </f-layout>-->
+  <!--    <f-row>-->
+  <!--        <f-col span="24" :ipad="{span:2}" :pc="{span: 20}"></f-col>-->
+  <!--        <f-col span="24" :ipad="{span:22}" :pc="{span: 4}"></f-col>-->
+  <!--    </f-row>-->
+  <!--    <f-row>-->
+  <!--        <f-col span="2"></f-col>-->
+  <!--        <f-col span="22"></f-col>-->
+  <!--    </f-row>-->
+  <!--    <f-row>-->
+  <!--        <f-col span="8" order="2" offset="2">order-2</f-col>-->
+  <!--        <f-col span="14" order="1">order-1</f-col>-->
+  <!--    </f-row>-->
+  <!--    <f-row justify="space-around" align="center">-->
+  <!--        <f-col span="6"></f-col>-->
+  <!--        <f-col span="10"></f-col>-->
+  <!--    </f-row>-->
+  <!--    <f-row gutter="20">-->
+  <!--        <f-col span="12"></f-col>-->
+  <!--        <f-col span="12"></f-col>-->
+  <!--    </f-row>-->
+  <!--    <f-row class="navBar">-->
+  <!--        <f-col class="top" span="24" :narrow-pc="{span: 8}"></f-col>-->
+  <!--        <f-col class="top" span="24" :narrow-pc="{span: 8}"></f-col>-->
+  <!--        <f-col class="top" span="24" :narrow-pc="{span: 8}"></f-col>-->
+  <!--    </f-row>-->
+  <!--    <div style="border: 1px solid black;">-->
+  <!--        <f-row gutter="20">-->
+  <!--            <f-col class="g-col" span="12">1</f-col>-->
+  <!--            <f-col class="g-col" span="12">2</f-col>-->
+  <!--        </f-row>-->
+  <!--        <f-row>-->
+  <!--            <f-col span="col-12">3</f-col>-->
+  <!--            <f-col span="col-12">4</f-col>-->
+  <!--        </f-row>-->
+  <!--        <f-row>-->
+  <!--            <f-col span="2">5</f-col>-->
+  <!--            <f-col span="20" offset="2">6</f-col>-->
+  <!--        </f-row>-->
+  <!--        <f-row>-->
+  <!--            <f-col span="2">7</f-col>-->
+  <!--            <f-col span="8" offset="2">8</f-col>-->
+  <!--            <f-col span="8" offset="4">9</f-col>-->
+  <!--        </f-row>-->
+  <!--    </div>-->
+
+</div>
+<script src="./src/app.js"></script>
+</body>
+</html>

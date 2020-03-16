@@ -1,65 +1,53 @@
-const expect = chai.expect;
 import Vue from 'vue'
-import Tabs from '../src/Tabs/tabs.vue'
+import Tabs from "../src/Tabs/Tabs.vue"
+import TabPane from "../src/Tabs/TabPane"
 
-import TabsHeader from '../src/Tabs/tabs-header'
-import TabsBody from '../src/Tabs/tabs-body'
-import TabsItem from '../src/Tabs/tabs-item'
-import TabsPane from '../src/Tabs/tabs-pane'
+const expect = chai.expect;
 
-Vue.component(`f-tabs`,Tabs)
-Vue.component(`f-tabs-head`,TabsHeader)
-Vue.component(`f-tabs-body`,TabsBody)
-Vue.component(`f-tabs-item`,TabsItem)
-Vue.component(`f-tabs-pane`,TabsPane)
 
 Vue.config.productionTip = false
 Vue.config.devtools = false
 
+Vue.component('f-tabs',Tabs)
+Vue.component('f-tab-pane',TabPane)
 
 describe('Tabs', () => {
-    //BDD 行为测试驱动
-    //这里描述了Button的一系列行为
-    it('存在.', () => {
+
+    it('Tabs存在.', () => {
         expect(Tabs).to.exist
     })
 
-    it('接收selected属性', function (done) {
+    it('验证selected属性', function (done) {
         const div = document.createElement('div')
         document.body.append(div)
+
         div.innerHTML = `
-               <f-tabs selected="finance">
-        <f-tabs-head>
-            <f-tabs-item name="woman" >
-                 美女
-            </f-tabs-item>
-            <f-tabs-item name="finance">
-                财经
-            </f-tabs-item>
-            <f-tabs-item name="sports">
-                体育
-            </f-tabs-item>
-        </f-tabs-head>
-        <f-tabs-body>
-            <f-tabs-pane name="woman">
-                美女相关资讯
-            </f-tabs-pane>
-            <f-tabs-pane name="finance">
-                财经相关资讯
-            </f-tabs-pane>
-            <f-tabs-pane name="sports">
-                体育相关资讯
-            </f-tabs-pane>
-        </f-tabs-body>
-    </f-tabs>
-        `
+       <f-tabs :selected.sync="activeName" @tab-click="handleClick">
+             <!--   name表示选项卡的别名   -->
+             <f-tab-pane label="用户管理配置" name="first">用户管理</f-tab-pane>
+             <f-tab-pane label="配置管理" name="second">配置管理</f-tab-pane>
+             <f-tab-pane label="角色管理哈哈哈哈" name="third">角色管理</f-tab-pane>
+             <f-tab-pane label="定时任务补偿" name="forth" disabled>定时任务补偿</f-tab-pane>
+        </f-tabs>
+                  `
         let vm = new Vue({
-            el: div
+            el: div,
+            data() {
+                return {
+                    activeName: 'first'
+                }
+            },
+            methods: {
+                handleClick() {
+                }
+            }
         })
-        vm.$nextTick( () => {
-            let select = vm.$el.querySelector('.tabs-pane')
-            expect(select.classList.contains('active')).to.be.exist
+        setTimeout( () => {
+            let select = vm.$el.querySelector('.f-tabs-pane')
+            expect(getComputedStyle(select).display).to.equal('block')
+            vm.$el.remove()
+            vm.$destroy()
             done()
-        })
+        },0)
     })
 })

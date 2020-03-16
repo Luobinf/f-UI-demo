@@ -15,7 +15,8 @@
     },
     props: {
       selected: {
-        type: Array
+        type: Array,
+        required: true
       },
       single: {
         type: Boolean,
@@ -30,7 +31,6 @@
     mounted(){
       this.eventBus.$emit(`update:selected`,this.selected)
 
-
       this.eventBus.$on(`update:addSelected`,(name) => {
         let selectedCopy = JSON.parse(JSON.stringify(this.selected))
         if(this.single === true){
@@ -43,6 +43,7 @@
       })
 
       this.eventBus.$on(`update:removeSelected`,(name) => {
+        //为什么这里要使用深拷贝，因为如果不用深拷贝的话那么就要直接修改父组件传递过来的数据，而这是不允许的。
         let selectedCopy = JSON.parse(JSON.stringify(this.selected))
         let index = selectedCopy.indexOf(name)
         selectedCopy.splice(index,1)  //删除指定索引的元素
