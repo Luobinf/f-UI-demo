@@ -5,13 +5,13 @@ import Icon from './icon'
 import ButtonGroup from './Button/button-group'
 import Input from './input'
 import Ginput from './in'
-import fRow from './row'
-import fCol from './col'
+import fRow from './Layout/row'
+import fCol from './Layout/col'
 import fLayout from './layout'
-import fHeader from './header'
-import fContent from './content'
+import fHeader from './Layout/header'
+import fContent from './Layout/content'
 import fSide from './side'
-import fFooter from './footer'
+import fFooter from './Layout/footer'
 import fToast from './toast'
 import Plugin from './plugin'
 import Tabs from './Tabs/tabs'
@@ -58,6 +58,7 @@ new Vue({
         value: '你好',
         selectedTab: 'sports',
         collapseTab: ['2'],
+        visible: false
     },
     methods: {
         showToast(position){

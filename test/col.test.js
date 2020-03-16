@@ -1,4 +1,4 @@
-import Col from '../src/col'
+import Col from '../src/Layout/col'
 import Vue from 'vue'
 const expect = chai.expect
 
