@@ -7,10 +7,10 @@ import Input from './input'
 import Ginput from './in'
 import fRow from './Layout/row'
 import fCol from './Layout/col'
-import fLayout from './layout'
+import fLayout from './Tabs/layout'
 import fHeader from './Layout/header'
 import fContent from './Layout/content'
-import fSide from './side'
+import fSide from './Layout/side'
 import fFooter from './Layout/footer'
 import fToast from './toast'
 import Plugin from './plugin'
@@ -61,16 +61,17 @@ new Vue({
         visible: false
     },
     methods: {
-        showToast(position){
-            this.$toast(`我被关闭啊`,{
+        showToast(position) {
+            this.$toast('更新成功😄',{
                 closeButton: {
-                    text: `关闭`,
-                    callback(toast){
-                        toast.hi()
-                        console.log(`我被关闭了`)
+                    // text: '关闭',
+                    callback() {
+                        console.log('哈哈哈哈你好')
                     }
                 },
-                position
+                enableHtml: false,
+                position,
+                showButton: true
             })
         },
         showToast1(){

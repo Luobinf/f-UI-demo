@@ -1,42 +1,37 @@
 <template>
-<div class="wrapper" :class="toastClasses">
-  <div class="toast" ref="toast">
-    <div class="message">
-      <slot v-if="!enableHtml"></slot>
-      <div v-else v-html="$slots.default[0]"></div>
+  <div class="f-toast-wrapper" :class="toastClasses">
+    <div class="f-toast" ref="toast">
+      <div class="message">
+        <slot v-if="!enableHtml"></slot>
+        <div v-else v-html="$slots.default[0]"></div>
+      </div>
+      <template v-if="closeButton && closeButton.text">
+        <div :class="line" ref="line"></div>
+        <span v-if="closeButton && closeButton.text" class="close" @click="onClickClose">
+          {{closeButton.text}}
+        </span>
+      </template>
     </div>
-    <template v-if="closeButton.text">
-      <div class="line" ref="line"></div>
-      <span class="close" @click="onClickClose">
-      {{closeButton.text}}
-    </span>
-    </template>
   </div>
-</div>
 </template>
 
 <script type="text/javascript">
   export default {
-    name: `fToast`,
-    computed: {
-      toastClasses() {
-        return {[`position-${this.position}`]:true}
-      }
-    },
+    name: 'fToast',
     props: {
       autoClose: {
         type: Boolean,
         default: true
       },
-      autoCloseDelay:{
+      autoCloseDelay: {
         type: Number,
-        default: 30
+        default: 1
       },
       closeButton: {
         type: Object,
-        default: () => {
+        default() {
           return {
-            text: ``,
+            text: '',
             callback: undefined
           }
         }
@@ -47,134 +42,138 @@
       },
       position: {
         type: String,
-        default: `top`,
-        validator(val){
+        default: 'top',
+        validator(val) {
           return ['top','middle','bottom'].indexOf(val) >= 0
+        }
+      }
+    },
+    computed: {
+      toastClasses() {
+        return {
+          [`position-${this.position}`]: true
+        }
+      },
+      line() {
+        return {
+          line: !!this.closeButton.text
         }
       }
     },
     mounted() {
       this.updateStyles()
-      this.runAutoClose()
-
+      this.execAutoClose()
     },
     methods: {
-      updateStyles(){
-        this.$nextTick(() => {
-          // this.$refs.line.style.height = this.$refs.toast.getBoundingClientRect().height + 'px'
-          // this.$refs.line.style.height = this.$refs.toast.style.height 不生效
-          this.$refs.line.style.height = this.$refs.toast.getBoundingClientRect().height + 'px'
-        })
+      close() {
+        this.$el.remove()
+        this.$emit('close') //toast关闭时，触发close时事件，外面可以监听
+        this.$destroy() //解除vue实例上的事件等
       },
-      runAutoClose(){
-        if(this.autoClose){
+      onClickClose() {
+        this.close()
+        if (this.closeButton && this.closeButton.callback && typeof this.closeButton.callback === 'function') {
+          this.closeButton.callback()
+        }
+      },
+      execAutoClose() {
+        if(this.autoClose) {
           setTimeout(() => {
             this.close()
-          },1000*this.autoCloseDelay)
+          },this.autoCloseDelay * 1000)
         }
       },
-      close(){
-        this.$el.remove()
-        this.$emit(`close`)
-        this.$destroy()
-      },
-      onClickClose(){
-        this.close()
-        if(this.closeButton && typeof this.closeButton.callback === 'function'){
-          this.closeButton.callback(this)  //this为toast实例
-        }
-      },
-      hi(){
-        console.log(`hi`)
+      updateStyles() {
+        this.$nextTick( () => {
+          if(this.$refs.line) {
+            this.$refs.line.style.height =  `${this.$refs.toast.getBoundingClientRect().height}px`
+          }
+        })
       }
     }
   }
 </script>
 
 <style scoped lang="scss">
-  $font-size: 14px;
+  $font-size: 16px;
   $toast-min-height: 40px;
-  $toast-bg:rgba(0,0,0,0.75);
-  $border-radius: 4px;
-  $animation-duration: 1s;
-  @keyframes slide-up {
-    0%{
+  $toast-bg: rgba(0,0,0,0.75);
+  $animation-duration: 350ms;
+  @keyframes fade-in {
+    0% {
       opacity: 0;
-      transform: translateY(100%);
     }
-    100%{
-      opacity: 100%;
-      transform: translateY(0);
+    100% {
+      opacity: 1;
     }
   }
-  @keyframes fade-in {
-    0%{
-      opacity: 0;
+  @keyframes slide-up {
+    0% {
+      transform: translateY(100%);
     }
-    100%{
-      opacity: 100%;
+    100% {
+      transform: translateY(0);
     }
   }
   @keyframes slide-down {
-    0%{
-      opacity: 0;
+    0% {
       transform: translateY(-100%);
     }
-
-    100%{
-      opacity: 100%;
+    100% {
       transform: translateY(0);
     }
   }
-  .wrapper{
+  .f-toast-wrapper{
     position: fixed;
     left: 50%;
-    transform: translate(-50%,0);
+    transform: translateX(-50%);
     &.position-top{
-      top: 0;
-      .toast{
+      top:0;
+      .f-toast{
+        animation: slide-down $animation-duration;
         border-top-left-radius: 0;
         border-top-right-radius: 0;
-        animation: slide-down $animation-duration;
       }
     }
     &.position-bottom{
       bottom: 0;
-      .toast{
+      .f-toast{
+        animation: slide-up $animation-duration;
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
-        animation: slide-up $animation-duration;
       }
     }
     &.position-middle{
       top: 50%;
       transform: translate(-50%,-50%);
+      .f-toast{
+        animation: fade-in $animation-duration;
+      }
     }
   }
-  .toast{
-    animation: fade-in $animation-duration;
-    min-height: $toast-min-height;
+  .f-toast{
+    line-height: 1.8;
     font-size: $font-size;
+    min-height: $toast-min-height;
     display: flex;
     align-items: center;
-    box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.50);
-    background-color: $toast-bg;
-    color: white;
-    padding: 0 16px;
-    border-radius: $border-radius;
+    background: $toast-bg;
+    box-shadow: 0 0 3px 0 rgba(0,0,0,0.50);
+    color: #ffffff;
+    padding: 0 1em;
+    border-radius: 6px;
+    cursor: pointer;
     .close{
-      padding-left: 16px;
-      flex-shrink: 0;
-      cursor: pointer;
+      margin-left: 1em;
+      white-space: nowrap;
     }
     .line{
-      border-left: 1px solid #666;
+      border: 1px solid #666666;
       height: 100%;
-      margin-left: 16px;
+      margin-left: 1em;
     }
     .message{
-      padding: 4px 0;
+      padding: 0.4em 0;
     }
   }
 </style>
-

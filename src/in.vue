@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <div class="f-toast-wrapper">
     <input type="text" :value="value" :disabled="disabled" :readonly="readonly" :class="{error: error}" @change="$emit('change',$event)"
            @focus="$emit('focus',$event)" @blur="$emit('blur',$event)" @input="$emit('input',$event.target.value)"
     >
@@ -46,7 +46,7 @@ export default {
   $box-shadow-color: rgba(0,0,0,0.5);
   $color-disabled-and-readonly: #bbb;
   $red: #F1453D;
-  .wrapper{
+  .f-toast-wrapper{
     display: inline-flex;
     justify-content: center;
     align-items: center;

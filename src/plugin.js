@@ -1,27 +1,27 @@
-import Toast from './toast'
+import fToast from "./toast"
+
 let currentToast
 export default {
-    install(Vue,options){
-        Vue.prototype.$toast = function (message,toastProps) {
-            if(currentToast){
+    install(Vue) {
+        Vue.prototype.$toast = function(message,toastOptions) {
+            if(currentToast) {
                 currentToast.close()
             }
-            currentToast = createToast(Vue,message,toastProps,onClose)
+            currentToast = createToast(message,toastOptions,Vue,() => {
+                //避免在点击关闭按钮后，再次渲染toast组件时，仍然会执行一次close操作
+                currentToast = null
+            })
         }
     }
 }
-
-function onClose() {
-    currentToast = null
-}
-/*创建toast*/
-function createToast(Vue,message,propsData,onClose) {
-    let Constructor = Vue.extend(Toast)
-    let toast = new Constructor({
+// 创建toast
+function createToast(message,propsData,Vue,onClose) {
+    let Toast = Vue.extend(fToast) //构建Toast类
+    let toast = new Toast({
         propsData
     })
     toast.$slots.default = [message]
-    toast.$mount()
+    toast.$mount()  //此时toast在内存中，不再页面中
     toast.$on('close',onClose)
     document.body.append(toast.$el)
     return toast
