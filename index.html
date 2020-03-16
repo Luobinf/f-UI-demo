@@ -49,22 +49,22 @@
 <!--<div style="height: 1000px;border: 1px solid red"></div>-->
 <div id="app" style="padding: 100px;">
     <div>
-        <f-button icon="loading" :loading="true" icon-position="right">
-            点击
-        </f-button>
+<!--        <f-button icon="loading" :loading="true" icon-position="right">-->
+<!--            点击-->
+<!--        </f-button>-->
         <f-button-group>
             <f-button>上一页</f-button>
-            <f-button>下一页</f-button>
+<!--            <f-button>下一页</f-button>-->
         </f-button-group>
-        <f-button icon="loading" :loading="true" icon-position="right" type="dashed">
-            点击
-        </f-button>
-        <f-button icon="loading" :loading="true" icon-position="right" type="danger">
-            点击
-        </f-button>
-        <f-button icon="loading" :loading="true" icon-position="right" type="primary">
-            点击
-        </f-button>
+<!--        <f-button icon="loading" :loading="true" icon-position="right" type="dashed">-->
+<!--            点击-->
+<!--        </f-button>-->
+<!--        <f-button icon="loading" :loading="true" icon-position="right" type="danger">-->
+<!--            点击-->
+<!--        </f-button>-->
+<!--        <f-button icon="loading" :loading="true" icon-position="right" type="primary">-->
+<!--            点击-->
+<!--        </f-button>-->
     </div>
     <div>
         <f-input error="错误信息"></f-input>
@@ -80,6 +80,25 @@
         </f-collapse>
         {{collapseTab}}
     </div>
+    <section style="margin-top: 100px">
+        <div style="margin: 0 0 0 100px">
+            <f-popover width="250" title="Title">
+                <template v-slot:content>
+                    <p>Content内容</p>
+                    <p>Content内容</p>
+                </template>
+                <f-button>Top</f-button>
+            </f-popover>
+            <f-popover width="250" title="Title" :visible.sync="visible">
+                <template v-slot:content>
+                    <p>Content内容</p>
+                    <p>Content内容</p>
+                    <f-button @click="visible = false" style="margin-left: 60%">Close</f-button>
+                </template>
+                <f-button>Bottom</f-button>
+            </f-popover>
+        </div>
+    </section>
 <!--当组件的父元素上有overflowL:hidden时，会让你的弹出框看不见-->
 <!--    <div style="overflow: hidden;">-->
 <!--        <f-popover position="top" trigger="hover">-->
