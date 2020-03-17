@@ -8,40 +8,22 @@
 	```
 	*，*::before，*::after{ box-sizing: border-box;}
 	```
-	IE8 及以上浏览器支持此样式
-	你还需要设置默认颜色等变量，后续会改为scss变量。
-	```
-	html {
-	--button-height: 32px;
-	--font-size: 14px;
-	--button-bg: white;
-	--button-active-bg: #eee;
-	--border-radius: 4px;
-	--color: #333;
-	--border-color: #999;
-	--border-color-hover: #666;
-	   }
-	```
-	IE15 及以上浏览器支持此样式。
+
 2. 安装 fjq-ui-1
 	```
 	npm install --save fjq-ui-1
 	```
 3.引入  fjq-ui-1
 	```
-	import { Button } from "fjq-ui-1";
-	import "fjq-ui-1/dist/index.css";
+	import { fButton } from "fjq-ui-1";
 	export default {
 	  name: "app",
 	  components: {
-		"f-button": Button,
+		fButton
 	  },
 	}
 	```
 ## 文档
 ## 提问
-你好
-## 变更记录
-## 联系方式
-## 贡献代码
+
 
