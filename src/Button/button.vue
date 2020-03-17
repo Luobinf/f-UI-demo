@@ -78,6 +78,7 @@
     display: inline-flex;
     justify-content: center;
     align-items: center;
+    vertical-align: middle;
     padding: $button-padding;
     font-size: $font-size;
     border-radius: $border-radius;

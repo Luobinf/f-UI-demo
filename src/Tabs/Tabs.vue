@@ -2,7 +2,7 @@
   <div class="f-tabs">
     <div class="f-tabs-head" ref="head">
       <div class="f-tabs-item" v-for="(item, index) in TabsItems" :key="index" :class="tabsItemClasses(item)"
-           @click="handleChange(index,$event)" ref="items" :data-name="item.name"
+           @click="handleChange(index)" ref="items" :data-name="item.name"
       >
         {{item.label}}
       </div>
@@ -51,7 +51,7 @@
           'is-disabled': item.disabled
         }
       },
-      handleChange(index,event) {
+      handleChange(index) {
         let selectedTabItem = this.TabsItems[index]
         if(selectedTabItem.disabled) {
           return
@@ -61,7 +61,7 @@
         this.eventBus.$emit('update:selected',selectedTabItem)
         //触发事件以更新外面的activeName值
         this.$emit('update:selected',selectedTabItem.name)
-        this.$emit('tab-click',event)
+        this.$emit('tab-click',this)
       },
       updateLinePositionAndWidth(item) {
         this.$nextTick( () => {

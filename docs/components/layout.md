@@ -1,6 +1,19 @@
+---
+title: Layout
+---
+# Layout 布局
+用于快速的布局
+
+<ClientOnly>
+  <layout-demo-1></layout-demo-1>
+  <layout-demo-2></layout-demo-2>
+</ClientOnly>
+
+
+代码
+
+```JS
 <template>
-  <div style="padding: 20px 0;">
-    <h3>有侧边栏的布局方式</h3>
     <f-layout style="height: 100vh;">
       <f-sider style="background-color: #ff4d4f">sider</f-sider>
       <f-layout>
@@ -9,16 +22,9 @@
         <f-footer style="background: blue;">footer</f-footer>
       </f-layout>
     </f-layout>
-  </div>
 </template>
 
 <script type="text/javascript">
-  import fLayout from '../../../src/Layout/layout.vue'
-  import fHeader from '../../../src/Layout/header.vue'
-  import fMain from '../../../src/Layout/main.vue'
-  import fFooter from '../../../src/Layout/footer.vue'
-  import fSider from '../../../src/Layout/sider.vue'
-
   export default {
     data() {
       return {}
@@ -32,3 +38,5 @@
     }
   }
 </script>
+
+```

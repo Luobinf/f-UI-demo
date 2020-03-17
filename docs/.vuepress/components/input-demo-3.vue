@@ -1,21 +1,21 @@
 <template>
-  <div class="page">
-
+  <div style="padding-top: 16px;">
+    <h2>支持双向绑定</h2>
+    <f-input v-model="value"></f-input>
+    <div>
+      value: {{value}}
+    </div>
   </div>
 </template>
+<script>
+  import fInput from '../../../src/input'
 
-<script type="text/javascript">
-export default {
-  data () {
-    return {
-
+  export default {
+    components: {fInput},
+    data () {
+      return {
+        value: 'hello'
+      }
     }
-  },
-  components: {
-
   }
-}
 </script>
-
-<style scoped>
-</style>

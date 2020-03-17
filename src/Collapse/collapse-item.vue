@@ -20,10 +20,12 @@
     },
     props: {
       title: {
-        type: String
+        type: String,
+        required: true
       },
       name: {
-        type: [String,Number]
+        type: [String,Number],
+        required: true
       }
     },
     inject: [`eventBus`],

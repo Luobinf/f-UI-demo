@@ -16,7 +16,9 @@
     props: {
       selected: {
         type: Array,
-        required: true
+        default() {
+          return []
+        }
       },
       single: {
         type: Boolean,
@@ -40,6 +42,8 @@
         }
         this.eventBus.$emit(`update:selected`,selectedCopy)
         this.$emit(`update:selected`,selectedCopy)
+        //通知外界 当前激活面板改变时触发change事件
+        this.$emit('change',selectedCopy)
       })
 
       this.eventBus.$on(`update:removeSelected`,(name) => {
@@ -49,7 +53,10 @@
         selectedCopy.splice(index,1)  //删除指定索引的元素
         this.eventBus.$emit(`update:selected`,selectedCopy)
         this.$emit(`update:selected`,selectedCopy)
+        //通知外界 当前激活面板改变时触发change事件
+        this.$emit('change',selectedCopy)
       })
+
     }
   }
 </script>

@@ -67,7 +67,6 @@
     methods: {
       close() {
         this.$el.remove()
-        this.$emit('close') //toast关闭时，触发close时事件，外面可以监听
         this.$destroy() //解除vue实例上的事件等
       },
       onClickClose() {
@@ -127,6 +126,7 @@
     position: fixed;
     left: 50%;
     transform: translateX(-50%);
+    z-index: 1000;
     &.position-top{
       top:0;
       .f-toast{

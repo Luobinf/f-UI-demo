@@ -85,7 +85,7 @@ new Vue({
             console.log('我被点击了')
         },
         handleClick(e) {
-            // console.log(e.target)
+            console.log(e)
         }
     }
 })
