@@ -14,7 +14,7 @@
 </template>
 
 <script type="text/javascript">
-import fCascader from "./cascader";
+import fCascader from "./cascader/cascader";
 import db from './db';
 
 function ajax1(parent_id = 0,success) {
@@ -44,7 +44,7 @@ export default {
     };
   },
   components: {
-    "f-cascader": fCascader
+    fCascader
   },
   created() {
     ajax2(0).then((result) => {
