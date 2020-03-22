@@ -1,20 +1,24 @@
 <template>
-  <svg class="icon">
-    <use :xlink:href="`#i-${name}`"></use>
+  <svg class="icon fIcon" aria-hidden="true">
+    <use :xlink:href="`#i-${iconName}`"></use>
   </svg>
 </template>
 
 <script type="text/javascript">
   import './svg'
   export default {
-    name: 'fjq-icon',
-    props: ['name']
+    name: 'fIcon',
+    props: {
+      iconName: {}
+    }
   }
 </script>
 
 <style scoped lang="scss">
   .icon {
-    height: 1em;
-    width: 1em;
+    width: 1em; height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
   }
 </style>

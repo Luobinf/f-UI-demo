@@ -1,103 +1,171 @@
 <template>
-<!--  iconPosition是一个变量-->
-  <button class="f-button" :class="{[`icon-${iconPosition}`]:true}" @click="changeState">
-      <f-icon :name="icon" v-if="icon && !loading" class="icon"></f-icon>
-      <f-icon name="loading" class="icon loading" v-if="loading"></f-icon>
-      <div class="content">
-        <slot>按钮</slot>
-      </div>
+  <button class="f-button" :class="[type, iconPosition, size]" @click="onClick">
+    <span class="word">
+      <slot>按钮</slot>
+    </span>
+    <f-icon :icon-name="icon" v-if="icon && !loading"></f-icon>
+    <f-icon class="loading" icon-name="loading" v-if="loading"></f-icon>
   </button>
 </template>
-
 <script type="text/javascript">
-import Icon from '../icon'
-export default {
-    name: 'fjq-button',
-    components: {
-      'f-icon': Icon
+  import fIcon from "../icon";
+  export default {
+    name: "fButton",
+    data() {
+      return {};
     },
     props: {
-        icon: {},
-        loading: {
-          type: Boolean,
-            default: false
-        },
-        iconPosition: {
-            type: String,
-            default: 'left',
-            //prop属性校验器
-            validator: function (value) {
-                //value为用户传给子组件的值，如果值不符合，vue就会发出一个警告
-                return !(value !== 'left' && value !== 'right')
-            }
+      type: {
+        default: "default",
+        type: String,
+        validator(val) {
+          return ["default", "dashed", "danger", "primary"].indexOf(val) >= 0;
         }
+      },
+      icon: {},
+      iconPosition: {
+        default: "left",
+        type: String,
+        validator(val) {
+          return ["left", "right"].indexOf(val) >= 0;
+        }
+      },
+      loading: {
+        type: Boolean,
+        default: false
+      },
+      size: {
+        default: "medium",
+        type: String,
+        validator(val) {
+          return ["medium", "small", "large"].indexOf(val) >= 0;
+        }
+      }
+    },
+    components: {
+      fIcon
     },
     methods: {
-        changeState() {
-            this.$emit('click')
-        }
+      onClick() {
+        this.$emit('click')
+      }
     }
-}
+  };
 </script>
 
 <style scoped lang="scss">
-    $font-size: 14px;
-    $button-height: 32px;
-    $button-bg: white;
-    $button-active-bg: #eee;
-    $border-radius: 4px;
-    $color: #333;
-    $border-color: #999;
-    $border-color-hover: #666;
-    @keyframes spin {
-        0%{
-            transform: rotate(0deg);
-        }
-        100%{
-            transform: rotate(360deg);
-        }
+  $border-color: rgb(217, 217, 217);
+  $button-padding: 0.3em 1em;
+  $font-small-size: 12px;
+  $font-size: 14px;
+  $font-large-size: 16px;
+  $border-radius: 4px;
+  $color: rgba(0, 0, 0, 0.65);
+  $border-color-hover: #5cadff;
+  $color-hover: #5cadff;
+  $border-color-active: #3091f2;
+  $color-active: #3091f2;
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
     }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
   .f-button {
-    font-size: $font-size;
-    height: $button-height;
-    padding: 0 1em;
-    border-radius: $border-radius;
-    border: 1px solid $border-color;
-    background: $button-bg;
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    vertical-align: top;
-    &:hover {
-      border-color: $border-color-hover;
+    vertical-align: middle;
+    padding: $button-padding;
+    font-size: $font-size;
+    border-radius: $border-radius;
+    color: $color;
+    cursor: pointer;
+    transition: color 0.5s;
+    background-color: white;
+    outline: none;
+    &.default {
+      border: 1px solid $border-color;
+      &:hover {
+        color: $color-hover;
+        border: 1px solid $border-color-hover;
+      }
+      &:active {
+        outline: none;
+        color: $color-active;
+        border-color: $border-color-active;
+      }
     }
-    &:active {
-      background-color: $button-active-bg;
 
+    &.dashed {
+      border: 1px dashed $border-color;
+      &:hover {
+        color: $color-hover;
+        border: 1px dashed $border-color-hover;
+      }
+      &:active {
+        outline: none;
+        color: $color-active;
+        border-color: $border-color-active;
+      }
     }
-    &:focus {
-      outline: none;
+
+    &.primary {
+      background: #1890ff;
+      color: #fff;
+      box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
+      border: none;
+      transition: background-color 0.5s;
+      &:hover {
+        background-color: rgb(64, 169, 255);
+      }
+      &:active {
+        background-color: #1890ff;
+      }
     }
-    /*用css来控制icon的方向*/
-    > .icon{
+
+    &.danger {
+      background: #ff4d4f;
+      color: #fff;
+      box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
+      border: none;
+      transition: background-color 0.5s;
+      &:hover {
+        background-color: rgb(255, 120, 117);
+      }
+      &:active {
+        outline: none;
+        background-color :#ff4d4f;
+      }
+    }
+
+    &.left > .fIcon {
       order: 1;
       margin-right: 0.3em;
     }
-    > .content{
+    &.left > .word {
       order: 2;
     }
-    &.icon-right {
-      > .icon{
-        order: 2;
-        margin-right: 0;
-        margin-left: 0.3em;
-      }
-      > .content{
-        order: 1;
-      }
+    &.right > .fIcon {
+      order: 2;
+      margin-left: 0.3em;
     }
-    .loading{
-        animation: spin 2s infinite linear;
+    &.right > .word {
+      order: 1;
+    }
+
+    .loading {
+      animation: spin 1s infinite linear;
+    }
+
+    &.small {
+      font-size: $font-small-size;
+    }
+    &.large {
+      font-size: $font-large-size;
     }
   }
 </style>
