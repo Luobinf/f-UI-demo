@@ -1,6 +1,5 @@
 import { mount } from '@vue/test-utils'
 import Button from '../../src/button/button.vue'
-import ButtonGroup from '../../src/button/button-group.vue'
 import sinonChai from 'sinon-chai'
 import sinon from 'sinon'
 import chai,{expect} from 'chai'
