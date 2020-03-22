@@ -32,7 +32,7 @@ describe('Button', () => {
     expect( wrapper.find('use').attributes('href')).to.equal('#i-loading')
   })
 
-  it('svg默认的order为1',() => {
+  xit('svg默认的order为1',() => {
     const wrapper = mount(Button,{
       propsData: {
         icon: 'settings'
@@ -45,7 +45,7 @@ describe('Button', () => {
     expect(order).to.equal('1')
   })
 
-  it('设置icon-position为right时order为2',() => {
+  xit('设置icon-position为right时order为2',() => {
     const wrapper = mount(Button,{
       propsData: {
         icon: 'settings',
