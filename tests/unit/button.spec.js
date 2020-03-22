@@ -3,7 +3,6 @@ import Button from '../../src/button/button.vue'
 import sinonChai from 'sinon-chai'
 import sinon from 'sinon'
 import chai,{expect} from 'chai'
-import Vue from "vue"
 chai.use(sinonChai)
 
 describe('Button', () => {
@@ -57,65 +56,38 @@ describe('Button', () => {
   })
 
   it('button默认size为medium',() => {
-    const div = document.createElement('div')
-    document.body.append(div)
-    let Constructor = Vue.extend(Button)
-    let vm = new Constructor({
+    const wrapper = mount(Button,{
       propsData: {
-      },
-      mounted() {
-        expect(this.$el.classList.contains('medium')).to.equal(true)
       }
-    }).$mount(div)
-    vm.$el.remove()
-    vm.$destroy()
+    })
+    expect(wrapper.vm.$el.classList.contains('medium')).to.equal(true)
   })
 
   it('button可以接受size,将size大小设置为small',() => {
-    const div = document.createElement('div')
-    document.body.append(div)
-    let Constructor = Vue.extend(Button)
-    let vm = new Constructor({
+    const wrapper = mount(Button,{
       propsData: {
         size: 'small'
-      },
-      mounted() {
-        expect(this.$el.classList.contains('small')).to.equal(true)
       }
-    }).$mount(div)
-    vm.$el.remove()
-    vm.$destroy()
+    })
+    expect(wrapper.vm.$el.classList.contains('small')).to.equal(true)
   })
 
   it('type默认值为default',() => {
-    const div = document.createElement('div')
-    document.body.append(div)
-    let Constructor = Vue.extend(Button)
-    let vm = new Constructor({
+    const wrapper = mount(Button,{
       propsData: {
-      },
-      mounted() {
-        expect(this.$el.classList.contains('default')).to.equal(true)
+        size: 'small'
       }
-    }).$mount(div)
-    vm.$el.remove()
-    vm.$destroy()
+    })
+    expect(wrapper.vm.$el.classList.contains('default')).to.equal(true)
   })
 
   it('button可以接受type，设置为dashed',() => {
-    const div = document.createElement('div')
-    document.body.append(div)
-    let Constructor = Vue.extend(Button)
-    let vm = new Constructor({
+    const wrapper = mount(Button,{
       propsData: {
         type: 'dashed'
-      },
-      mounted() {
-        expect(this.$el.classList.contains('dashed')).to.equal(true)
       }
-    }).$mount(div)
-    vm.$el.remove()
-    vm.$destroy()
+    })
+    expect(wrapper.vm.$el.classList.contains('dashed')).to.equal(true)
   })
 
   it('点击 button 触发 click 事件', () => {
