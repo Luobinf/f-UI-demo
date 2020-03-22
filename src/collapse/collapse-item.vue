@@ -1,12 +1,12 @@
 <template>
   <div class="fCollapsePanel">
     <div class="title" @click="toggle" ref="title">{{title}}</div>
-    <template v-if="open">
+    <div class="content-wrapper" v-show="open">
       <div class="line"></div>
       <div class="content">
         <slot></slot>
       </div>
-    </template>
+    </div>
   </div>
 </template>
 
@@ -20,10 +20,12 @@
     },
     props: {
       title: {
-        type: String
+        type: String,
+        required: true
       },
       name: {
-        type: [String,Number]
+        type: [String,Number],
+        required: true
       }
     },
     inject: [`eventBus`],
