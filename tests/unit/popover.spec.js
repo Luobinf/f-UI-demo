@@ -18,6 +18,9 @@ describe('测试Popover组件',() => {
     })
     wrapper.find('.trigger').trigger('click')
     expect(wrapper.find('.content-wrapper').classes()).to.includes('position-bottom')
+    let contentWrapper = wrapper.find('.content-wrapper')
+    expect(contentWrapper.classes('position-bottom')).to.be.true
+
   })
 
   it('可以接收visible属性',() => {
